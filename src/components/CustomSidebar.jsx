@@ -120,7 +120,7 @@ export function EnhancedSidebar({ user, onExpandChange,setToggleFunction }) {
               exit={{ opacity: 0 }}
               className="text-xl font-bold bg-gradient-to-r from-[#60a5fa] to-[#6366F1] bg-clip-text text-transparent"
             >
-              ShikshaVerse
+              DishaMarg
             </motion.h2>
           ) : (
             // <Icon icon="noto:books" className="w-8 h-8" />

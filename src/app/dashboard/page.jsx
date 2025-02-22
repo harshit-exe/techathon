@@ -97,7 +97,7 @@ export default function Dashboard() {
           {/* Enter VR Classroom Button */}
           <button className="bg-black text-white flex items-center mt-3 mr-4 pb-1 pr-1 pl-4 pt-1 px-6 py-2 rounded-full">
             Enter VR Classroom 
-            <div className="bg-green-500 text-black p-1 pl-1 pr-1 ml-4 rounded-full">
+            <div className="bg-[#57FF31] text-black p-1 pl-1 pr-1 ml-4 rounded-full">
             <ArrowUpRight className="ml-1 m-1" />
             </div>
           </button> 
@@ -231,20 +231,20 @@ export default function Dashboard() {
               <ArrowRight className="w-6 h-6 text-black" />
             </motion.div>
             <h2 className="text-5xl font-bold leading-tight">
-              Empowering students
-              <br />
-              from Tier 2 & Tier 3
-              <br />
-              Cities
+            From Villages 
+            <br />
+            to Metros,
+            <br />
+             One Path to Success
             </h2>
           </div>
 
           <div className="mt-28 grid grid-cols-1 md:grid-cols-3 gap-8 items-center mb-12">
             <div>
-              <h1 className="text-2xl">
-                <span className="text-[#6366F1] font-['Rammetto_One']">S</span>
-                hikshaVerse
-              </h1>
+            <h1 className="logo">
+            <span className="text-[#6366F1] ">D</span>
+            ishaMarg
+          </h1>
             </div>
 
             <nav className="flex flex-wrap justify-center gap-8">
@@ -270,7 +270,7 @@ export default function Dashboard() {
           </div>
 
           <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-[#434343]">
-            <p className="text-[#949494]">© ShikhaVerse 2025</p>
+            <p className="text-[#949494]">© DishaMarg 2025</p>
             <div className="flex gap-6 mt-4 md:mt-0">
               <Link href="#" className="text-[#949494] hover:text-white transition-colors">
                 Privacy Policy

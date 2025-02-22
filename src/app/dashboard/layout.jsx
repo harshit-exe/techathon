@@ -87,13 +87,13 @@ export default function DashboardLayout({ children }) {
         </header> */}
         <header className="flex justify-between items-center px-6 py-4">
           <h1 className="logo">
-            <span className="text-[#6366F1] ">S</span>
-            hikshaVerse
+            <span className="text-[#6366F1] ">D</span>
+            ishaMarg
           </h1>
           <div className="flex items-center gap-4">
             <button className="flex items-center gap-2 bg-gray-800 text-white px-7 py-1 pr-1 rounded-full">
               Enter VR Classroom
-              <div className="bg-green-500 text-black p-3 pt-3 pb-3 pl-1f rounded-full text-3xl font-bold">
+              <div className="bg-[#57FF31] text-black p-3 pt-3 pb-3 pl-1f rounded-full text-3xl font-bold">
                 <ArrowUpRight className="ml-1 m-1" />
               </div>
             </button>
