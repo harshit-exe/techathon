@@ -16,6 +16,7 @@ import { Separator } from "@/components/ui/separator";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { LogOut, ChevronRight, ChevronLeft, Menu } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
 
 const navigationItems = [
   {
@@ -252,7 +253,7 @@ export function EnhancedSidebar({ user, onExpandChange, setToggleFunction }) {
             onClick={toggleSidebar}
             className="text-white hover:bg-[#374151]"
           >
-            {isExpanded ? <ChevronLeft size={20} /> : <Menu size={20} />}
+            {isExpanded ? <ChevronLeft size={20} /> : null}
           </Button>
         </div>
         <Separator className=" bg-[#3c3c3c]" />
@@ -329,7 +330,7 @@ export function EnhancedSidebar({ user, onExpandChange, setToggleFunction }) {
           </div>
         </div>
         <Separator className="my-2 bg-[#3c3c3c]" />
-        <div className="p-4">
+        <div className="p-4 mb-5">
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Button
               variant="ghost"
@@ -341,7 +342,7 @@ export function EnhancedSidebar({ user, onExpandChange, setToggleFunction }) {
             </Button>
           </motion.div>
         </div>
-        <div className="p-4 flex items-center">
+        {/* <div className="p-4 flex items-center">
           <Avatar className="w-10 h-10 border-2 border-[#6366F1]">
             <AvatarImage src={user?.pic} alt={user?.username} />
             <AvatarFallback className="bg-[#2563eb] text-white">
@@ -361,7 +362,7 @@ export function EnhancedSidebar({ user, onExpandChange, setToggleFunction }) {
               <p className="text-xs text-[#9ca3af]">{user?.email}</p>
             </motion.div>
           )}
-        </div>
+        </div> */}
       </div>
     </motion.div>
   );
