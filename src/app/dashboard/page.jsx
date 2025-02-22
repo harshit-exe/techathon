@@ -43,7 +43,7 @@ export default function Dashboard() {
         </div>
         <div className="flex justify-between items-center">
         <h1 className="text-3xl font-bold">
-          Hello, Students YourLearning Dashboard
+          Hello, Students Your Learning Dashboard
         </h1>
         <ArrowRight className="w-8 h-8 text-indigo-500" />
       </div>
