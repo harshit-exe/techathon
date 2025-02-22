@@ -121,7 +121,7 @@ export function EnhancedSidebar({ user, onExpandChange, setToggleFunction }) {
   const [activeItem, setActiveItem] = useState(null);
   const [hoveredItem, setHoveredItem] = useState(null);
   const router = useRouter();
-  const { logout } = useAuth();
+  const { logout, isAuthenticated } = useAuth();
 
   const handleLogout = async () => {
     const response = await logout();
@@ -137,7 +137,7 @@ export function EnhancedSidebar({ user, onExpandChange, setToggleFunction }) {
     if (!isExpanded) {
       setIsExpanded(true);
     }
-  
+
     if (item.children) {
       setActiveItem(activeItem === item.name ? null : item.name);
     } else if (item.link) {
@@ -198,7 +198,9 @@ export function EnhancedSidebar({ user, onExpandChange, setToggleFunction }) {
                 className="ml-3"
               >
                 <p className="text-sm font-medium text-white">
-                  {user?.firstName}
+                  {isAuthenticated
+                    ? `Welcome, ${user?.email}`
+                    : "You must log in first."}
                 </p>
                 <p className="text-xs text-[#9ca3af]">{user?.email}</p>
               </motion.div>
