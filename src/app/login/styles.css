@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap');
+/* Custom button hover effect */
+.logo{
+    font-family:"Rammetto One";
+    font-weight: 400;
+    font-size: 35px;
+    font-style: normal;
+    line-height: 52.31px;
+    letter-spacing: 0%;
+}
+
+
+/* Custom button hover effect */
+.button-hover {
+  transition: all 0.2s ease;
+}
+
+.button-hover:hover {
+  transform: translate(0, 0);
+  background-color: #57ff31;
+}
+
+/* Custom checkbox styling */
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #1f1f1f;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  background: transparent;
+}
+
+input[type="checkbox"]:checked {
+  background-color: #6366f1;
+  border-color: #6366f1;
+}
+
+input[type="checkbox"]:checked::before {
+  content: "✓";
+  position: absolute;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Custom input focus styles */
+input:focus {
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+/* Smooth transitions */
+.transition-all {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Add a subtle glow effect to the login button on hover */
+button[type="submit"]:hover span {
+  box-shadow: 0 0 15px rgba(87, 255, 49, 0.5);
+}
+
+/* Add a pulsing animation to the logo */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.logo {
+  animation: pulse 3s infinite ease-in-out;
+}
+
