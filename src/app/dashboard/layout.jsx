@@ -86,10 +86,11 @@ export default function DashboardLayout({ children }) {
           </div>
         </header> */}
         <header className="flex justify-between items-center px-6 py-4">
-          <h1 className="logo">
-            <span className="text-[#6366F1] ">D</span>
-            ishaMarg
-          </h1>
+        <Link href="/dashboard">
+      <h1 className="logo cursor-pointer">
+        <span className="text-[#6366F1]">D</span>ishaMarg
+      </h1>
+    </Link>
           <div className="flex items-center gap-4">
             <button className="flex items-center gap-2 bg-gray-800 text-white px-7 py-1 pr-1 rounded-full">
               Enter VR Classroom
