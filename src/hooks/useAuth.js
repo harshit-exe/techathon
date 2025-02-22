@@ -88,7 +88,7 @@ export const useAuth = () => {
 
       return data;
     } catch (error) {
-      return { success: false, message: "Logout failed" };
+      return { success: false, message: "Logout Failed" };
     }
   };
 
