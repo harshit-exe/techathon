@@ -206,25 +206,27 @@ export function EnhancedSidebar({ user, onExpandChange, setToggleFunction }) {
     >
       <div className="flex flex-col h-full ">
         <div className="p-4 pl-0 flex items-center justify-between">
-        <div className="p-4 flex items-center">
-          <Avatar className="w-10 h-10 border-2 border-[#6366F1]">
-            <AvatarImage src={user?.pic} alt={user?.username} />
-            <AvatarFallback className="bg-[#2563eb] text-white">
-              {user?.username?.charAt(0)}
-            </AvatarFallback>
-          </Avatar>
-          {isExpanded && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="ml-3"
-            >
-              <p className="text-sm font-medium text-white">{user?.username}</p>
-              <p className="text-xs text-[#9ca3af]">{user?.email}</p>
-            </motion.div>
-          )}
-        </div>
+          <div className="p-4 flex items-center">
+            <Avatar className="w-10 h-10 border-2 border-[#6366F1]">
+              <AvatarImage src={user?.picture} alt={user?.firstName} />
+              <AvatarFallback className="bg-[#2563eb] text-white">
+                {user?.firstName?.charAt(0)}
+              </AvatarFallback>
+            </Avatar>
+            {isExpanded && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="ml-3"
+              >
+                <p className="text-sm font-medium text-white">
+                  {user?.firstName}
+                </p>
+                <p className="text-xs text-[#9ca3af]">{user?.email}</p>
+              </motion.div>
+            )}
+          </div>
           {/* {isExpanded ? (
             <Li href="/dashboard">
               <motion.h2
@@ -325,7 +327,7 @@ export function EnhancedSidebar({ user, onExpandChange, setToggleFunction }) {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Button
               variant="ghost"
-              className="w-full justify-start text-[#ff4e4e] hover:text-[#ff4e4e] hover:bg-[#374151]"
+              className="w-full justify-start text-[#ff4e4e] hover:text-[#e84343] hover:bg-[#374151]"
               onClick={handleLogout}
             >
               <LogOut className="mr-2 h-4 w-4" />
