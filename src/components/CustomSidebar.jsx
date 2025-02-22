@@ -104,16 +104,6 @@ const navigationItems = [
         icon: "noto:party-popper",
         link: "/dashboard/sidebar/event-webinars/events",
       },
-      {
-        name: "Webinars",
-        icon: "noto:desktop-computer",
-        link: "/dashboard/sidebar/event-webinars/webinars",
-      },
-      {
-        name: "Hackathons",
-        icon: "noto:trophy",
-        link: "/dashboard/sidebar/event-webinars/hackathons",
-      },
     ],
   },
   {
