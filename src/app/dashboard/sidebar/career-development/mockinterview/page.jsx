@@ -267,11 +267,11 @@ export default function CareerGuidanceInterviewSimulator() {
 
   return (
     <div
-      className={`min-h-screen w-screen bg-gradient-to-b from-gray-900 to-black text-white p-4 ${isFullScreen ? "fixed inset-0 z-50" : ""}`}
+      className={`min-h-screen min-w-screen bg-transparent bg-contain text-white p-4 ${isFullScreen ? "fixed inset-0 z-50" : ""}`}
     >
+          <h1 className="text-3xl font-bold text-[#6366F1] text-center">AI Career Guidance Assistant</h1>
       <div className="max-w-7xl mx-auto h-full flex flex-col">
         <div className="flex justify-between items-center mb-4">
-          <h1 className="text-3xl font-bold text-[#6366F1]">AI Career Guidance Assistant</h1>
           {isInterviewStarted && (
             <div className="flex items-center space-x-4">
               {showTimer && <div className="text-xl font-bold text-[#57FF31]">Time: {formatTime(timeRemaining)}</div>}
