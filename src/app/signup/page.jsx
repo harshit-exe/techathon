@@ -249,7 +249,7 @@ export default function SignUpPage() {
 
         {/* Divider */}
         <motion.div 
-          className="relative py-4"
+          className="relative py-4 "
           variants={itemVariants}
         >
           <div className="absolute inset-0 flex items-center">
