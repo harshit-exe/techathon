@@ -3,6 +3,7 @@ import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import dotenv from "dotenv";
+import { ChatProvider } from "@/hooks/useChat";
 
 dotenv.config();
 
@@ -28,7 +29,10 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
+        <ChatProvider>
+
         <ToastContainer />
+        </ChatProvider>
         {children}
       </body>
     </html>

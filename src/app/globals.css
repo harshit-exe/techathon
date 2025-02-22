@@ -17,10 +17,19 @@
   font-style: normal;
 }
 
+:root {
+  --leva-sizes-rootWidth: 340px;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
+
 body {
   background-image: url('/bg.png');
   background-size: contain;
-  /* background-repeat: no-repeat; */
   background-position: center;
 }
 
