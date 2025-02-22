@@ -15,7 +15,7 @@ const CareerPathVisualizer = ({ topic, skills }) => {
       transition={{ duration: 0.5 }}
       className="bg-gray-900 rounded-lg p-6 mb-4 shadow-lg"
     >
-      <h2 className="text-2xl font-bold mb-4 text-[#57FF31]">Career Path: {topic}</h2>
+      <h2 className="text-2xl font-bold mb-4 text-white">Career Path: {topic}</h2>
       <div className="relative">
         <div className="absolute left-4 top-0 bottom-0 w-1 bg-[#4F46E5]"></div>
         {skills.map((skill, index) => (
@@ -34,9 +34,9 @@ const CareerPathVisualizer = ({ topic, skills }) => {
               <div className="flex justify-between items-center">
                 <h3 className="text-lg font-semibold text-white">{skill.name}</h3>
                 {expandedSkill === index ? (
-                  <ChevronUp className="text-[#57FF31]" />
+                  <ChevronUp className="text-white" />
                 ) : (
-                  <ChevronDown className="text-[#57FF31]" />
+                  <ChevronDown className="text-white" />
                 )}
               </div>
               <AnimatePresence>

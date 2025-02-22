@@ -21,7 +21,7 @@ const TopicInput = ({ onTopicSubmit }) => {
       transition={{ duration: 0.5 }}
       className="bg-gray-900 rounded-lg p-6 mb-4 shadow-lg"
     >
-      <h2 className="text-2xl font-bold mb-4 text-[#57FF31]">Choose Your Topic</h2>
+      <h2 className="text-2xl font-bold mb-4 text-white">Choose Your Topic</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="text"
@@ -34,7 +34,7 @@ const TopicInput = ({ onTopicSubmit }) => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           type="submit"
-          className="w-full p-3 bg-[#4F46E5] text-white rounded-lg hover:bg-[#3c3799] transition-colors text-lg font-semibold"
+          className="w-full p-3 bg-[#433bcf] text-white rounded-lg hover:bg-[#3c3799] transition-colors text-lg font-semibold"
         >
           Start Quiz
         </motion.button>
