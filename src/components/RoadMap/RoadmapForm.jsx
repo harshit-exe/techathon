@@ -8,32 +8,82 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
 import { Switch } from "@/components/ui/switch"
-import { Tooltip, TooltipProvider } from "@/components/ui/tooltip"
+import { Card, CardContent } from "@/components/ui/card"
 
 const careerPaths = [
-  { value: "software-developer", label: "Software Developer", icon: "mdi:laptop-code" },
-  { value: "data-scientist", label: "Data Scientist", icon: "mdi:chart-scatter-plot" },
-  { value: "ux-designer", label: "UX Designer", icon: "mdi:palette-outline" },
-  { value: "product-manager", label: "Product Manager", icon: "mdi:briefcase-outline" },
-  { value: "cybersecurity-analyst", label: "Cybersecurity Analyst", icon: "mdi:shield-lock-outline" },
-  { value: "ai-engineer", label: "AI Engineer", icon: "mdi:robot-outline" },
-  { value: "cloud-architect", label: "Cloud Architect", icon: "mdi:cloud-outline" },
-  { value: "devops-engineer", label: "DevOps Engineer", icon: "mdi:infinity" },
+  {
+    value: "software-developer",
+    label: "Software Developer",
+    icon: "mdi:laptop-code",
+    description: "Build applications and software systems",
+  },
+  {
+    value: "data-scientist",
+    label: "Data Scientist",
+    icon: "mdi:chart-scatter-plot",
+    description: "Analyze and interpret complex data",
+  },
+  {
+    value: "ux-designer",
+    label: "UX Designer",
+    icon: "mdi:palette-outline",
+    description: "Create user-centered digital experiences",
+  },
+  {
+    value: "product-manager",
+    label: "Product Manager",
+    icon: "mdi:briefcase-outline",
+    description: "Lead product development and strategy",
+  },
+  {
+    value: "cybersecurity-analyst",
+    label: "Cybersecurity Analyst",
+    icon: "mdi:shield-lock-outline",
+    description: "Protect systems and networks",
+  },
+  {
+    value: "ai-engineer",
+    label: "AI Engineer",
+    icon: "mdi:robot-outline",
+    description: "Develop artificial intelligence solutions",
+  },
+  {
+    value: "cloud-architect",
+    label: "Cloud Architect",
+    icon: "mdi:cloud-outline",
+    description: "Design cloud infrastructure",
+  },
+  {
+    value: "devops-engineer",
+    label: "DevOps Engineer",
+    icon: "mdi:infinity",
+    description: "Streamline development operations",
+  },
 ]
 
 const skillLevels = [
-  { value: "beginner", label: "Beginner", icon: "mdi:sprout" },
-  { value: "intermediate", label: "Intermediate", icon: "mdi:tree" },
-  { value: "advanced", label: "Advanced", icon: "mdi:palm-tree" },
+  { value: "beginner", label: "Beginner", icon: "mdi:sprout", description: "Just starting out" },
+  { value: "intermediate", label: "Intermediate", icon: "mdi:tree", description: "1-3 years experience" },
+  { value: "advanced", label: "Advanced", icon: "mdi:palm-tree", description: "3+ years experience" },
 ]
 
 const focusAreas = [
-  { value: "technical-skills", label: "Technical Skills", icon: "mdi:code-tags" },
-  { value: "soft-skills", label: "Soft Skills", icon: "mdi:account-group" },
-  { value: "industry-knowledge", label: "Industry Knowledge", icon: "mdi:briefcase" },
-  { value: "project-management", label: "Project Management", icon: "mdi:clipboard-check" },
-  { value: "leadership", label: "Leadership", icon: "mdi:account-supervisor" },
-  { value: "innovation", label: "Innovation", icon: "mdi:lightbulb-on" },
+  {
+    value: "technical-skills",
+    label: "Technical Skills",
+    icon: "mdi:code-tags",
+    description: "Programming and technical expertise",
+  },
+  { value: "soft-skills", label: "Soft Skills", icon: "mdi:account-group", description: "Communication and teamwork" },
+  { value: "industry-knowledge", label: "Industry Knowledge", icon: "mdi:briefcase", description: "Domain expertise" },
+  {
+    value: "project-management",
+    label: "Project Management",
+    icon: "mdi:clipboard-check",
+    description: "Planning and execution",
+  },
+  { value: "leadership", label: "Leadership", icon: "mdi:account-supervisor", description: "Team management" },
+  { value: "innovation", label: "Innovation", icon: "mdi:lightbulb-on", description: "Creative problem-solving" },
 ]
 
 export default function RoadmapForm({ setRoadmapData, onComplete }) {
@@ -43,7 +93,8 @@ export default function RoadmapForm({ setRoadmapData, onComplete }) {
   const [selectedFocusAreas, setSelectedFocusAreas] = useState([])
   const [includeCertifications, setIncludeCertifications] = useState(false)
   const [customGoals, setCustomGoals] = useState("")
-  const { generateSubtasks, isLoading, error } = useGroqAI()
+  const { generateSubtasks, isLoading, error: groqError } = useGroqAI()
+  const [localError, setLocalError] = useState(null)
 
   const handleFocusAreaToggle = (area) => {
     setSelectedFocusAreas((prev) => (prev.includes(area) ? prev.filter((a) => a !== area) : [...prev, area]))
@@ -51,78 +102,89 @@ export default function RoadmapForm({ setRoadmapData, onComplete }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const prompt = `Create a detailed career development roadmap for a ${skillLevel} level ${careerPath} with a timeframe of ${timeframe} months. 
-                    Focus areas: ${selectedFocusAreas.join(", ")}. 
-                    ${includeCertifications ? "Include relevant certifications." : ""}
-                    Custom goals: ${customGoals}
-                    For each step in the roadmap, provide:
-                    1. A clear title starting with "Step: "
-                    2. Required skills, each prefixed with "- Skill: "
-                    3. Recommended resources (with URLs) prefixed with "- Resource: "
-                    4. If applicable, recommended certifications
-                    Ensure the roadmap is comprehensive and aligned with industry standards.`
+    setLocalError(null) // Clear any previous local errors
+    const prompt = `Create a detailed career development roadmap for a ${skillLevel} level ${careerPath} professional with the following specifications:
+    
+    Timeline: ${timeframe} months
+    Focus Areas: ${selectedFocusAreas.join(", ")}
+    ${includeCertifications ? "Include relevant professional certifications." : ""}
+    ${customGoals ? `Additional Goals: ${customGoals}` : ""}
+
+    For each step in the roadmap:
+    1. Provide a clear title and timeframe
+    2. List 3-5 required skills
+    3. Include 2-3 learning resources with valid URLs
+    4. ${includeCertifications ? "Recommend relevant certifications" : "Skip certifications"}
+    5. Ensure logical progression between steps
+    
+    Make the roadmap practical and industry-aligned.`
+
     const roadmapData = await generateSubtasks(prompt)
 
-    if (roadmapData && roadmapData.nodes && roadmapData.edges) {
+    if (roadmapData?.nodes?.length > 0) {
       setRoadmapData(roadmapData)
       onComplete()
     } else {
-      console.error("Invalid roadmap data received:", roadmapData)
+      setLocalError("Failed to generate a valid roadmap. Please try again.")
     }
   }
 
   return (
-    <TooltipProvider>
-      <form onSubmit={handleSubmit} className="space-y-8 bg-black text-white p-6 rounded-lg">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <Label htmlFor="careerPath" className="text-lg font-medium text-white mb-3">
-              Career Path:
-            </Label>
-            <div className="grid grid-cols-2 gap-2">
-              {careerPaths.map((path) => (
-                <Tooltip key={path.value} content={path.label}>
-                  <Button
-                    type="button"
-                    onClick={() => setCareerPath(path.value)}
-                    variant={careerPath === path.value ? "default" : "outline"}
-                    className={`flex items-center justify-center h-16 ${careerPath === path.value ? "bg-indigo-600 text-white" : "bg-gray-800 text-white border-indigo-600"}`}
-                  >
-                    <Icon icon={path.icon} className="w-8 h-8" />
-                  </Button>
-                </Tooltip>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <Label htmlFor="skillLevel" className="text-lg font-medium text-white mb-3">
-              Skill Level:
-            </Label>
-            <div className="flex justify-between">
-              {skillLevels.map((level) => (
-                <Tooltip key={level.value} content={level.label}>
-                  <Button
-                    type="button"
-                    onClick={() => setSkillLevel(level.value)}
-                    variant={skillLevel === level.value ? "default" : "outline"}
-                    className={`flex flex-col items-center justify-center h-24 w-24 ${skillLevel === level.value ? "bg-indigo-600 text-white" : "bg-gray-800 text-white border-indigo-600"}`}
-                  >
-                    <Icon icon={level.icon} className="w-10 h-10 mb-2" />
-                    <span className="text-xs">{level.label}</span>
-                  </Button>
-                </Tooltip>
-              ))}
-            </div>
+    <form onSubmit={handleSubmit} className="space-y-8  text-white p-6 rounded-lg max-w-4xl mx-auto">
+      <div className="space-y-6">
+        <div>
+          <Label className="text-2xl font-bold text-white mb-4 block">Choose Your Career Path</Label>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {careerPaths.map((path) => (
+              <Card
+                key={path.value}
+                className={`cursor-pointer transition-all ${
+                  careerPath === path.value ? "bg-indigo-600 border-green-400" : "bg-gray-800 hover:bg-gray-700"
+                }`}
+                onClick={() => setCareerPath(path.value)}
+              >
+                <CardContent className="p-4">
+                  <div className="flex items-center gap-3">
+                    <Icon icon={path.icon} className="w-8 h-8 text-green-400" />
+                    <div>
+                      <h3 className="font-semibold text-lg">{path.label}</h3>
+                      <p className="text-sm text-gray-300">{path.description}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
 
         <div>
-          <Label htmlFor="timeframe" className="text-lg font-medium text-white mb-3">
-            Timeframe: {timeframe} months
-          </Label>
+          <Label className="text-2xl font-bold text-white mb-4 block">Select Your Level</Label>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {skillLevels.map((level) => (
+              <Card
+                key={level.value}
+                className={`cursor-pointer transition-all ${
+                  skillLevel === level.value ? "bg-indigo-600 border-green-400" : "bg-gray-800 hover:bg-gray-700"
+                }`}
+                onClick={() => setSkillLevel(level.value)}
+              >
+                <CardContent className="p-4">
+                  <div className="flex items-center gap-3">
+                    <Icon icon={level.icon} className="w-8 h-8 text-green-400" />
+                    <div>
+                      <h3 className="font-semibold text-lg">{level.label}</h3>
+                      <p className="text-sm text-gray-300">{level.description}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <Label className="text-2xl font-bold text-white mb-4 block">Timeframe: {timeframe} months</Label>
           <Slider
-            id="timeframe"
             min={1}
             max={60}
             step={1}
@@ -133,52 +195,61 @@ export default function RoadmapForm({ setRoadmapData, onComplete }) {
         </div>
 
         <div>
-          <Label className="text-lg font-medium text-white mb-3">Focus Areas:</Label>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <Label className="text-2xl font-bold text-white mb-4 block">Focus Areas</Label>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {focusAreas.map((area) => (
-              <Button
+              <Card
                 key={area.value}
-                type="button"
+                className={`cursor-pointer transition-all ${
+                  selectedFocusAreas.includes(area.value)
+                    ? "bg-indigo-600 border-green-400"
+                    : "bg-gray-800 hover:bg-gray-700"
+                }`}
                 onClick={() => handleFocusAreaToggle(area.value)}
-                variant={selectedFocusAreas.includes(area.value) ? "default" : "outline"}
-                className={`flex items-center justify-start h-12 ${selectedFocusAreas.includes(area.value) ? "bg-indigo-600 text-white" : "bg-gray-800 text-white border-indigo-600"}`}
               >
-                <Icon icon={area.icon} className="w-5 h-5 mr-2" />
-                <span>{area.label}</span>
-              </Button>
+                <CardContent className="p-4">
+                  <div className="flex items-center gap-3">
+                    <Icon icon={area.icon} className="w-8 h-8 text-green-400" />
+                    <div>
+                      <h3 className="font-semibold text-lg">{area.label}</h3>
+                      <p className="text-sm text-gray-300">{area.description}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
 
-        <div className="flex items-center">
+        <div className="flex items-center gap-4 bg-gray-800 p-4 rounded-lg">
           <Switch id="certifications" checked={includeCertifications} onCheckedChange={setIncludeCertifications} />
-          <Label htmlFor="certifications" className="ml-2 text-white">
-            Include Certifications
+          <Label htmlFor="certifications" className="text-lg text-white cursor-pointer">
+            Include Professional Certifications
           </Label>
         </div>
 
         <div>
-          <Label htmlFor="customGoals" className="text-lg font-medium text-white mb-3">
-            Custom Goals:
+          <Label htmlFor="customGoals" className="text-2xl font-bold text-white mb-4 block">
+            Custom Goals
           </Label>
           <Input
             id="customGoals"
             value={customGoals}
             onChange={(e) => setCustomGoals(e.target.value)}
             placeholder="Enter any specific goals or areas you want to focus on"
-            className="bg-gray-800 text-white border-indigo-600"
+            className="bg-gray-800 text-white border-indigo-600 p-4"
           />
         </div>
 
         <Button
           type="submit"
-          className="w-full text-lg font-semibold h-12 bg-indigo-600 hover:bg-indigo-700 text-white"
+          className="w-full text-lg font-semibold h-14 bg-indigo-600 hover:bg-indigo-700 text-white mt-8"
           disabled={isLoading || !careerPath || !skillLevel}
         >
           {isLoading ? (
             <>
               <Icon icon="eos-icons:loading" className="animate-spin mr-2" />
-              Generating...
+              Generating Your Career Roadmap...
             </>
           ) : (
             <>
@@ -187,9 +258,14 @@ export default function RoadmapForm({ setRoadmapData, onComplete }) {
             </>
           )}
         </Button>
-        {error && <p className="text-red-500 mt-2">{error}</p>}
-      </form>
-    </TooltipProvider>
+
+        {(groqError || localError) && (
+          <div className="bg-red-900/50 border border-red-500 text-red-200 p-4 rounded-lg mt-4">
+            {groqError || localError}
+          </div>
+        )}
+      </div>
+    </form>
   )
 }
 

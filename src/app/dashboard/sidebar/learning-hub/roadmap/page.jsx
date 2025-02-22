@@ -13,7 +13,7 @@ export default function CareerRoadmapPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white p-8">
+    <div className="min-h-screen bg-[url('/bg.png')] bg-contain text-white p-8">
       <h1 className="text-4xl font-bold mb-8 text-center">Career Development Roadmap</h1>
       {!showVisualization ? (
         <RoadmapForm setRoadmapData={setRoadmapData} onComplete={handleRoadmapComplete} />
