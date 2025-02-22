@@ -14,7 +14,7 @@ const QuizResults = ({ topic, questions, userAnswers, onRestart }) => {
       transition={{ duration: 0.5 }}
       className="bg-gray-900 rounded-lg p-6 text-center shadow-lg"
     >
-      <h2 className="text-3xl font-bold mb-4 text-[#57FF31]">Quiz Completed!</h2>
+      <h2 className="text-3xl font-bold mb-4 text-[#31d2ff]">Quiz Completed!</h2>
       <p className="text-xl mb-6">
         Your score on {topic}: <span className="font-bold text-[#4F46E5]">{score}%</span>
       </p>
@@ -37,7 +37,7 @@ const QuizResults = ({ topic, questions, userAnswers, onRestart }) => {
       <motion.button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="px-6 py-3 bg-[#4F46E5] text-white rounded-lg hover:bg-[#3c3799] transition-colors text-lg font-semibold"
+        className="px-6 py-3 bg-[#232060] text-white rounded-lg hover:bg-[#574ff7] transition-colors text-lg font-semibold"
         onClick={onRestart}
       >
         Start New Quiz

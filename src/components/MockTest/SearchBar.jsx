@@ -51,7 +51,7 @@ const SearchBar = ({ onSearch, suggestions }) => {
           type="submit"
           className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#57FF31] hover:text-[#4AE028]"
         >
-          Go
+          +
         </button>
       </form>
       <AnimatePresence>

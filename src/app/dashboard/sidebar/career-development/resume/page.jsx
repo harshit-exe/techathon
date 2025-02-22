@@ -231,21 +231,12 @@ export default function ResumeBuilder() {
   return (
     <div className="min-h-screen bg-[#111111] text-white">
       {/* Header */}
-      <header className="flex justify-between items-center px-6 py-4 border-b border-gray-800 bg-[#191919]">
-        <h1 className="text-2xl font-bold">
-          <span className="text-[#6366f1]">S</span>hikhaVerse
-        </h1>
-        <Button className="bg-[#6366f1] hover:bg-[#5355d1] text-white rounded-full gap-2 px-6">
-          Join Metaverse <ArrowRight className="w-4 h-4" />
-        </Button>
-      </header>
-
       <main className="p-6 max-w-7xl mx-auto">
         <div className="flex gap-8">
           {/* Form Section */}
           <div className="flex-1 space-y-4">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-2xl font-semibold">Resume Builder</h2>
+              <h2 className="text-2xl font-poppins">RESUME BUILDER</h2>
               <div className="relative">
                 <input
                   type="file"

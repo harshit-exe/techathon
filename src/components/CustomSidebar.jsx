@@ -118,11 +118,6 @@ const navigationItems = [
         icon: "noto:milky-way",
         link: "/dashboard/sidebar/gamification/astrotalks",
       },
-      {
-        name: "Games",
-        icon: "noto:question-mark",
-        link: "/dashboard/sidebar/gamification/Games",
-      },
     ],
   },
   {
@@ -134,11 +129,6 @@ const navigationItems = [
         name: "Profile Settings",
         icon: "noto:wrench",
         link: "/dashboard/sidebar/account-settings/settings",
-      },
-      {
-        name: "News and Updates",
-        icon: "noto:bell",
-        link: "/dashboard/sidebar/account-settings/news",
       },
     ],
   },
