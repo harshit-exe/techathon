@@ -157,10 +157,16 @@ export function EnhancedSidebar({ user, onExpandChange, setToggleFunction }) {
   const [activeItem, setActiveItem] = useState(null);
   const [hoveredItem, setHoveredItem] = useState(null);
   const router = useRouter();
+  const { logout } = useAuth();
 
-  const handleLogout = () => {
-    router.push("/login");
-    localStorage.clear();
+  const handleLogout = async () => {
+    const response = await logout();
+    if (response.success) {
+      toast.success("Logout successful!");
+      router.push("/login");
+    } else {
+      toast.error(response.message);
+    }
   };
 
   const handleItemClick = (item) => {
@@ -335,7 +341,27 @@ export function EnhancedSidebar({ user, onExpandChange, setToggleFunction }) {
             </Button>
           </motion.div>
         </div>
-       
+        <div className="p-4 flex items-center">
+          <Avatar className="w-10 h-10 border-2 border-[#6366F1]">
+            <AvatarImage src={user?.pic} alt={user?.username} />
+            <AvatarFallback className="bg-[#2563eb] text-white">
+              {user?.username?.charAt(0)}
+            </AvatarFallback>
+          </Avatar>
+          {isExpanded && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="ml-3"
+            >
+              <p className="text-sm font-medium text-white">
+                {user?.firstName}
+              </p>
+              <p className="text-xs text-[#9ca3af]">{user?.email}</p>
+            </motion.div>
+          )}
+        </div>
       </div>
     </motion.div>
   );

@@ -7,9 +7,12 @@ import { Button } from "@/components/ui/button";
 import { EnhancedSidebar } from "@/components/CustomSidebar";
 import "./style.css";
 import Link from "next/link";
+import { useAuth } from "@/hooks/useAuth";
 
-export default function DashboardLayout({ children }) {
-  const [user, setUser] = useState(null);
+
+  
+  export default function DashboardLayout({ children }) {
+    const { user } = useAuth();
   const [notifications, setNotifications] = useState([]);
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
   const sidebarRef = useRef(null); // Ref to store child function reference
@@ -21,15 +24,6 @@ export default function DashboardLayout({ children }) {
     }
   };
 
-  const fetchUser = useCallback(async () => {
-    // Simulating API call
-    setUser({
-      username: "Ritik Ray",
-      email: "ritik@example.com",
-      pic: "/placeholder.svg",
-    });
-  }, []);
-
   const fetchNotifications = useCallback(async () => {
     // Simulating API call
     setNotifications([
@@ -40,9 +34,8 @@ export default function DashboardLayout({ children }) {
   }, []);
 
   useEffect(() => {
-    fetchUser();
     fetchNotifications();
-  }, [fetchUser, fetchNotifications]);
+  }, [fetchNotifications]);
 
   const handleVideoCall = () => {
     window.open("https://framevr.io/classroommmm", "_blank");
