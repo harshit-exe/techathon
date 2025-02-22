@@ -1,15 +1,17 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useCallback, useRef } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { ArrowUpRight, Bell, Menu } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { EnhancedSidebar } from "@/components/CustomSidebar"
-import './style.css'
+import { useState, useEffect, useCallback, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowUpRight, Bell, Menu } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { EnhancedSidebar } from "@/components/CustomSidebar";
+import "./style.css";
+import Link from "next/link";
+
 export default function DashboardLayout({ children }) {
-  const [user, setUser] = useState(null)
-  const [notifications, setNotifications] = useState([])
-  const [isSidebarExpanded, setIsSidebarExpanded] = useState(true)
+  const [user, setUser] = useState(null);
+  const [notifications, setNotifications] = useState([]);
+  const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
   const sidebarRef = useRef(null); // Ref to store child function reference
 
   // Function to call toggleSidebar in child
@@ -19,15 +21,14 @@ export default function DashboardLayout({ children }) {
     }
   };
 
-
   const fetchUser = useCallback(async () => {
     // Simulating API call
     setUser({
       username: "Ritik Ray",
       email: "ritik@example.com",
       pic: "/placeholder.svg",
-    })
-  }, [])
+    });
+  }, []);
 
   const fetchNotifications = useCallback(async () => {
     // Simulating API call
@@ -35,22 +36,25 @@ export default function DashboardLayout({ children }) {
       { id: 1, message: "New course available: Advanced React" },
       { id: 2, message: "Your mock interview is scheduled for tomorrow" },
       { id: 3, message: "Congratulations! You've earned a new badge" },
-    ])
-  }, [])
+    ]);
+  }, []);
 
   useEffect(() => {
-    fetchUser()
-    fetchNotifications()
-  }, [fetchUser, fetchNotifications])
+    fetchUser();
+    fetchNotifications();
+  }, [fetchUser, fetchNotifications]);
 
   const handleVideoCall = () => {
-    window.open("https://framevr.io/classroommmm", "_blank")
-  }
+    window.open("https://framevr.io/classroommmm", "_blank");
+  };
 
   return (
     <div className="flex min-h-screen bg-[#000000] text-white">
-      <EnhancedSidebar user={user} onExpandChange={setIsSidebarExpanded}
-         setToggleFunction={(fn) => (sidebarRef.current = fn)} />
+      <EnhancedSidebar
+        user={user}
+        onExpandChange={setIsSidebarExpanded}
+        setToggleFunction={(fn) => (sidebarRef.current = fn)}
+      />
       <motion.div
         className="flex-1 flex flex-col"
         initial={false}
@@ -81,27 +85,30 @@ export default function DashboardLayout({ children }) {
             </Button>
           </div>
         </header> */}
-            <header className="flex justify-between items-center px-6 py-4">
-        <h1 className="logo">
-          <span className="text-[#6366F1] ">S</span>
-          hikshaVerse
-        </h1>
-        <div className="flex items-center gap-4">
-          <button className="bg-[#191919] rounded-full px-6 py-2 flex items-center gap-2 hover:bg-[#252525] transition-colors">
-            Join Metaverse
-            <ArrowUpRight className="w-4 h-4" />
-          </button>
-          <button
-            className="p-2 hover:bg-[#191919] rounded-full transition-colors"
-            onClick={()=>{
-              handleToggleSidebar()
-              // setIsSidebarExpanded(!isSidebarExpanded)
-            }}
-          >
-            <Menu className="w-6 h-6" />
-          </button>
-        </div>
-      </header>
+        <header className="flex justify-between items-center px-6 py-4">
+          <h1 className="logo">
+            <span className="text-[#6366F1] ">S</span>
+            hikshaVerse
+          </h1>
+          <div className="flex items-center gap-4">
+            <button className="flex items-center gap-2 bg-gray-800 text-white px-7 py-1 pr-1 rounded-full">
+              Enter VR Classroom
+              <div className="bg-green-500 text-black p-3 pt-3 pb-3 pl-1f rounded-full text-3xl font-bold">
+                <ArrowUpRight className="ml-1 m-1" />
+              </div>
+            </button>
+
+            <button
+              className="p-2 hover:bg-[#191919] rounded-full transition-colors"
+              onClick={() => {
+                handleToggleSidebar();
+                // setIsSidebarExpanded(!isSidebarExpanded)
+              }}
+            >
+              <Menu className="w-6 h-6" />
+            </button>
+          </div>
+        </header>
         <main className="flex-1 overflow-y-auto p-6">
           <AnimatePresence mode="wait">
             <motion.div
@@ -118,6 +125,5 @@ export default function DashboardLayout({ children }) {
         {/* <Footer /> */}
       </motion.div>
     </div>
-  )
+  );
 }
-

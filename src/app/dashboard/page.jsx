@@ -40,57 +40,83 @@ export default function Dashboard() {
       {/* Main Content */}
       <main className="px-6 py-8 space-y-8">
         <div className="space-y-2">
-          <h2 className="text-4xl font-bold flex items-center gap-4">
-            Hello, Ritik Your Learning Dashboard
-            <motion.div animate={{ x: [0, 10, 0] }} transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY }}>
-              <ArrowRight className="text-[#6366F1]" />
-            </motion.div>
-          </h2>
-          <p className="text-[#949494]">Track your progress and upcoming activities</p>
         </div>
+        <div className="flex justify-between items-center">
+        <h1 className="text-3xl font-bold">
+          Hello, Students YourLearning Dashboard
+        </h1>
+        <ArrowRight className="w-8 h-8 text-indigo-500" />
+      </div>
+      <p className="text-gray-400 mt-2">
+        Track your progress and upcoming activities
+      </p>
 
-        {/* Virtual Classroom Card */}
-        <div className="rounded-[24px] bg-gradient-to-r from-[#6366F1] to-[#5457cd] p-8 flex justify-between items-center overflow-hidden relative">
-          <div className="space-y-6 z-10">
-            <h3 className="text-2xl font-bold">Virtual Classroom</h3>
-            <div className="space-y-4">
-              <p className="text-white/80">Current Session</p>
-              <div>
-                <p className="font-semibold text-lg">Advanced JavaScript</p>
-                <p className="text-sm text-white/60">with Prof. Sarah Johnson</p>
-              </div>
-            </div>
-            <div className="space-y-4">
-              <p className="text-white/80">Participants</p>
-              <div className="flex -space-x-2">
-                {[...Array(4)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="w-8 h-8 rounded-full bg-white/20 border-2 border-[#6366F1] flex items-center justify-center text-xs"
-                  >
-                    👤
-                  </div>
-                ))}
-                <div className="w-8 h-8 rounded-full bg-white/20 border-2 border-[#6366F1] flex items-center justify-center text-xs">
-                  +12
-                </div>
-              </div>
-            </div>
-            <button className="bg-black/20 rounded-full px-6 py-3 flex items-center gap-2 hover:bg-black/30 transition-colors">
-              Enter VR Classroom
-              <ArrowRight className="w-4 h-4" />
-            </button>
+      {/* Virtual Classroom Card */}
+      <div className="bg-indigo-600 rounded-3xl p-6 pb-0 mt-8 flex items-center">
+        <div className="flex-1">
+          <h2 className="text-2xl font-semibold">Virtual Classroom</h2>
+
+          {/* Current Session */}
+          <div className="bg-indigo-500 p-4 rounded-xl mt-4 mr-80">
+            <p className="text-gray-300">Current Session</p>
+            <p className="text-lg font-medium">Advanced JavaScript</p>
+            <p className="text-sm text-gray-300">with Prof. Sarah Johnson</p>
           </div>
-          <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[400px] h-[400px]">
-            <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ShikhaVerse__Nashik_UI___Copy_-jVd7dbiq3W6qf387uBSM1wJUyqAw0b.png"
-              alt="VR Headset"
-              width={400}
-              height={400}
-              className="object-contain"
-            />
+
+          {/* Participants */}
+          <div className="bg-indigo-500 p-4 rounded-xl mt-4 mr-80 flex items-center space-x-2">
+            <p className="text-gray-300">Participants</p>
+            <div className="flex -space-x-2">
+              <Image
+                src="/Ellipse 4.png"
+                alt="Participant"
+                width={32}
+                height={32}
+                className="w-8 h-8 rounded-full border-2 border-white"
+              />
+              <Image
+                src="/Ellipse 5.png"
+                alt="Participant"
+                width={32}
+                height={32}
+                className="w-8 h-8 rounded-full border-2 border-white"
+              />
+              <Image
+                src="/Ellipse 6.png"
+                alt="Participant"
+                width={32}
+                height={32}
+                className="w-8 h-8 rounded-full border-2 border-white"
+              />
+              <span className="bg-gray-800 text-white text-sm w-8 h-8 flex items-center justify-center rounded-full border-2 border-white">
+                +12
+              </span>
+            </div>
           </div>
+
+          {/* Enter VR Classroom Button */}
+          <button className="bg-black text-white flex items-center mt-3 mr-4 pb-1 pr-1 pl-4 pt-1 px-6 py-2 rounded-full">
+            Enter VR Classroom 
+            <div className="bg-green-500 text-black p-1 pl-1 pr-1 ml-4 rounded-full">
+            <ArrowUpRight className="ml-1 m-1" />
+            </div>
+          </button> 
+    
+        </div> 
+
+        {/* VR Image */}
+        <div className="hidden md:block -pt-8 -mt-6 -mr-6">
+          <Image
+            src="/Frame 63.png"
+            alt="VR Learning"
+            width={400}
+            height={250}
+            className="rounded-xl"
+          />
         </div>
+      </div>
+      <br />
+      <br />
 
         {/* Three Column Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
