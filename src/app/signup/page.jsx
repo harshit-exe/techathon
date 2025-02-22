@@ -27,6 +27,7 @@ export default function SignUpPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(formData);
     // Add your signup logic here
   };
 
