@@ -20,7 +20,10 @@ export default {
   			],
   			poppins: [
   				'Poppins'
-  			]
+  			],
+        saman:[
+           "Samarkan"
+        ],
   		},
   		colors: {
   			background: 'hsl(var(--background))',

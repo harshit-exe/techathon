@@ -79,8 +79,8 @@ export default function SignUpPage() {
             animate={{ scale: 1, opacity: 1 }}
             transition={{ type: "spring", stiffness: 200, damping: 10 }}
           >
-            <span className='text-[#6366F1] logo'>S</span>
-            hikshaVerse
+            <span className='text-[#6366F1] logo'>D</span>
+            ishaMarg
           </motion.h1>
           <motion.h2 
             className="text-3xl font-medium text-white"

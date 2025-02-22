@@ -23,19 +23,19 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="w-full h-full flex flex-col pb-5"
           >
-            <div className="nav ml-5 mt-5 flex justify-between items-center p-5 mb-20">
+            <div className="nav ml-5 mt-5 flex justify-center items-center p-5 mb-12 ">
               <motion.div
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.2 }}
                 className="logomain"
               >
-                <h1 className="logo text-white">
+                <h1 className="logo text-white  ">
                   <span className='text-[#6366F1] font-["Rammetto One"]'>D</span>
                   ishaMarg
                 </h1>
               </motion.div>
-              <motion.div
+              {/* <motion.div
                 initial={{ x: 20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.2 }}
@@ -46,27 +46,27 @@ export default function Home() {
                     Login
                   </span>
                 </button>
-              </motion.div>
+              </motion.div> */}
             </div>
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.4 }}
-              className="cta w-[90vw] mx-auto flex flex-col items-center justify-center mr-10"
+              className="cta w-[70vw] mx-auto flex flex-col items-center justify-center "
             >
-              <h1 className="font-colombo font-medium text-9xl text-center text-[#6366F1]">मार्गदर्शन for Success with AI</h1>
+              <h1 className="font-poppins font-semibold text-8xl text-center text-[#6366F1]"><span className='text-[#57FF31] font-saman'>Margdarshan </span> for Success with AI</h1>
               <div className="cta-img mr-10">
-                <Image src="/robot.png" width={200} height={300} alt="AI Robot" className="object-cover" />
+                <Image src="/robot.png" width={150} height={200} alt="AI Robot" className="object-cover" />
               </div>
             </motion.div>
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.6 }}
-              className="button flex items-center justify-center mt-5"
+              transition={{ delay: 0.6}}
+              className="button flex items-center justify-center mt-9"
             >
-              <button className="bg-white" onClick={() => setShowLanding(true)}>
-                <span className="block -translate-x-1 -translate-y-1 border-2 text-white border-white bg-black active:bg-[#57FF31] py-2 px-10 text-xl transition-all active:translate-x-0 active:translate-y-0">
+              <button className="bg-white " onClick={() => setShowLanding(true)}>
+                <span className="block -translate-x-1 -translate-y-1 border-2 text-white border-white bg-black active:bg-[#57FF31] py-2 px-10 text-xl transition-all active:translate-x-0 active:translate-y-0 ">
                   Get Started
                 </span>
               </button>
@@ -89,7 +89,7 @@ export default function Home() {
                 </h1>
               </div>
               <div className="name flex items-center justify-center pt-2">
-                <h1 className="text-white font-colombo font-medium text-3xl text-center">मार्गदर्शन for Success with AI</h1>
+                <h1 className="text-white font-poppins font-medium text-3xl text-center"><span className="text-[#57FF31] font-saman">Margdarshan</span> for Success with AI</h1>
               </div>
               <div className="button pr-4">
                 <button className="bg-white"
@@ -107,7 +107,7 @@ export default function Home() {
               className="cta w-[90vw] mx-auto flex items-center justify-center mr-10"
             >
               <p className="text-white text-6xl lg:text-8xl font-semibold text-center">
-                AI <span className="text-[#57FF31]">Powered</span> Collaborative Learning Platform
+              DishaMarg <span className="text-[#57FF31]"> AI-Powered</span> Learning Path
               </p>
               <div className="cta-img mr-10">
                 <Image src="/robot.png" width={200} height={300} alt="AI Robot" />
@@ -139,7 +139,7 @@ export default function Home() {
                 </div>
                 <div className="flex flex-col items-center justify-center">
                   <h1 className="text-white text-[60px] font-semibold">200+</h1>
-                  <h1 className="text-[#838383]">AI-Powered Courses</h1>
+                  <h1 className="text-[#838383]">AI-Generated Career Path</h1>
                 </div>
               </div>
               <div className="dash-div-3 w-[350px] h-[188px] rounded-tl-[97px] rounded-bl-[97px] bg-[#191919] flex items-center justify-between p-5">

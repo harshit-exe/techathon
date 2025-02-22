@@ -78,8 +78,8 @@ export default function LoginPage() {
         {/* Logo and Header */}
         <motion.div className="text-center space-y-4" variants={itemVariants}>
           <motion.h1 className="logo text-white text-4xl" variants={itemVariants}>
-            <span className='text-[#6366F1] font-["Rammetto One"]'>S</span>
-            hikshaVerse
+            <span className='text-[#6366F1] font-["Rammetto One"]'>D</span>
+            ishaMarg
           </motion.h1>
           <motion.h2 className="text-3xl font-medium text-white" variants={itemVariants}>
             Welcome back !
