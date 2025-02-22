@@ -235,7 +235,7 @@ export function EnhancedSidebar({ user, onExpandChange, setToggleFunction }) {
           )}
         </div>
           {/* {isExpanded ? (
-            <Link href="/dashboard">
+            <Li href="/dashboard">
               <motion.h2
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -244,7 +244,7 @@ export function EnhancedSidebar({ user, onExpandChange, setToggleFunction }) {
               >
                 DishaMarg
               </motion.h2>
-            </Link>
+            </Li
           ) : // <Icon icon="noto:books" className="w-8 h-8" />
           null} */}
           <Button
