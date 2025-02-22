@@ -84,24 +84,15 @@ export const useAuth = () => {
       const response = await fetch(`${apiURL}/api/auth/google-login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token: credential }), // Send as 'token'
-        credentials: "include", // Corrected credentials option
+        body: JSON.stringify({ token: credential }),
       });
 
       const data = await response.json();
 
-      if (!response.ok) {
-        return {
-          success: false,
-          message: data.message || "Google login failed",
-        };
-      }
-
       if (data.success) {
         setIsAuthenticated(true);
-        setUser(data.user);
-        // If the backend sets the cookie, you might not need this line:
-        // document.cookie = `token=${data.token}; path=/;`;
+        setUser(data.user); // ✅ User info store karo
+        document.cookie = `token=${data.token}; path=/;`; // ✅ Normal login jaisa token set karo
       }
 
       return data;
