@@ -1,26 +1,31 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import RoadmapForm from "@/components/RoadMap/RoadmapForm"
-import RoadmapVisualization from "@/components/RoadMap/RoadmapVisualization"
+import { useState } from "react";
+import RoadmapForm from "@/components/RoadMap/RoadmapForm";
+import RoadmapVisualization from "@/components/RoadMap/RoadmapVisualization";
 
 export default function CareerRoadmapPage() {
-  const [roadmapData, setRoadmapData] = useState(null)
-  const [showVisualization, setShowVisualization] = useState(false)
+  const [roadmapData, setRoadmapData] = useState(null);
+  const [showVisualization, setShowVisualization] = useState(false);
 
   const handleRoadmapComplete = () => {
-    setShowVisualization(true)
-  }
+    setShowVisualization(true);
+  };
 
   return (
     <div className="min-h-screen bg-[url('/bg.png')] bg-contain text-white p-8">
-      <h1 className="text-4xl font-bold mb-8 text-center">Career Development Roadmap</h1>
+      <h1 className="text-4xl font-bold mb-8 text-center font-poppins">
+        CAREER DEVELOPMENT ROADMAP
+      </h1>
+
       {!showVisualization ? (
-        <RoadmapForm setRoadmapData={setRoadmapData} onComplete={handleRoadmapComplete} />
+        <RoadmapForm
+          setRoadmapData={setRoadmapData}
+          onComplete={handleRoadmapComplete}
+        />
       ) : (
         <RoadmapVisualization roadmapData={roadmapData} />
       )}
     </div>
-  )
+  );
 }
-

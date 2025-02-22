@@ -9,12 +9,13 @@ import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
 import { Switch } from "@/components/ui/switch"
 import { Card, CardContent } from "@/components/ui/card"
+import { AlignVerticalJustifyEnd } from "lucide-react"
 
 const careerPaths = [
   {
     value: "software-developer",
     label: "Software Developer",
-    icon: "mdi:laptop-code",
+    icon: "mdi:code-braces",
     description: "Build applications and software systems",
   },
   {
@@ -144,7 +145,7 @@ export default function RoadmapForm({ setRoadmapData, onComplete }) {
                 onClick={() => setCareerPath(path.value)}
               >
                 <CardContent className="p-4">
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center text-green-400 gap-3">
                     <Icon icon={path.icon} className="w-8 h-8 text-green-400" />
                     <div>
                       <h3 className="font-semibold text-lg">{path.label}</h3>
@@ -169,7 +170,7 @@ export default function RoadmapForm({ setRoadmapData, onComplete }) {
                 onClick={() => setSkillLevel(level.value)}
               >
                 <CardContent className="p-4">
-                  <div className="flex items-center gap-3">
+                  <div className="flex text-green-400 items-center gap-3">
                     <Icon icon={level.icon} className="w-8 h-8 text-green-400" />
                     <div>
                       <h3 className="font-semibold text-lg">{level.label}</h3>
@@ -208,7 +209,7 @@ export default function RoadmapForm({ setRoadmapData, onComplete }) {
                 onClick={() => handleFocusAreaToggle(area.value)}
               >
                 <CardContent className="p-4">
-                  <div className="flex items-center gap-3">
+                  <div className="flex text-green-400 items-center gap-3">
                     <Icon icon={area.icon} className="w-8 h-8 text-green-400" />
                     <div>
                       <h3 className="font-semibold text-lg">{area.label}</h3>
@@ -268,4 +269,3 @@ export default function RoadmapForm({ setRoadmapData, onComplete }) {
     </form>
   )
 }
-
