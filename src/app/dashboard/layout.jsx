@@ -42,7 +42,7 @@ import { useAuth } from "@/hooks/useAuth";
   };
 
   return (
-    <div className="flex min-h-screen bg-[#000000] text-white">
+    <div className="flex min-h-screen bg-transparent text-white">
       <EnhancedSidebar
         user={user}
         onExpandChange={setIsSidebarExpanded}
