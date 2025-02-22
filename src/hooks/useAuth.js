@@ -13,30 +13,16 @@ export const useAuth = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const token = document.cookie
-          .split("; ")
-          .find((row) => row.startsWith("token="))
-          ?.split("=")[1]; // ✅ Token cookie se le lo
-
-        if (!token) {
-          setLoading(false);
-          return;
-        }
-
         const response = await fetch(`${apiURL}/api/auth/me`, {
-          method: "POST", // ✅ POST request use karni hogi, kyunki body bhej rahe hain
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ token }), // ✅ Token ko body me send karo
+          method: "GET", // ✅ GET request better hai, kyunki cookie automatic send hoti hai
+          credentials: "include", // ✅ Cookie ko send karne ke liye
         });
 
-        if (response.ok) {
-          const data = await response.json();
-          setIsAuthenticated(true);
-          setUser(data.user);
-          console.log(data.user);
-        }
+        if (!response.ok) throw new Error("Not authenticated");
+
+        const data = await response.json();
+        setIsAuthenticated(true);
+        setUser(data.user);
       } catch (error) {
         console.error("Auth check failed:", error);
       } finally {
@@ -51,14 +37,9 @@ export const useAuth = () => {
     try {
       const response = await fetch(`${apiURL}/api/auth/signup`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-
-      if (response.status === 409)
-        return { success: response.success, message: response.message };
 
       const data = await response.json();
 
@@ -74,18 +55,17 @@ export const useAuth = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
-        credentials: "include", // Ensure cookies are received
+        credentials: "include",
       });
 
+      if (!response.ok) throw new Error("Login failed");
+
       const data = await response.json();
-      if (data.success) {
-        setIsAuthenticated(true);
-        setUser(data.user);
-        // Remove document.cookie line - backend handles it
-      }
+      setIsAuthenticated(true);
+      setUser(data.user);
       return data;
     } catch (error) {
-      return { success: false, message: "Login failed" };
+      return { success: false, message: error.message || "Login failed" };
     }
   };
 
@@ -95,18 +75,20 @@ export const useAuth = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token: credential }),
-        credentials: "include", // Include cookies
+        credentials: "include",
       });
 
+      if (!response.ok) throw new Error("Google login failed");
+
       const data = await response.json();
-      if (data.success) {
-        setIsAuthenticated(true);
-        setUser(data.user);
-        // Remove document.cookie line
-      }
+      setIsAuthenticated(true);
+      setUser(data.user);
       return data;
     } catch (error) {
-      return { success: false, message: "Google login failed" };
+      return {
+        success: false,
+        message: error.message || "Google login failed",
+      };
     }
   };
 
@@ -114,34 +96,18 @@ export const useAuth = () => {
     try {
       const response = await fetch(`${apiURL}/api/auth/logout`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
         credentials: "include",
       });
 
-      const data = await response.json();
+      if (!response.ok) throw new Error("Logout failed");
 
-      if (data.success) {
-        setIsAuthenticated(false);
-        setUser(null);
-        document.cookie =
-          "token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-      }
-
-      return data;
+      setIsAuthenticated(false);
+      setUser(null);
+      return { success: true, message: "Logged out successfully" };
     } catch (error) {
-      return { success: false, message: "Logout failed" };
+      return { success: false, message: error.message || "Logout failed" };
     }
   };
 
-  return {
-    signup,
-    login,
-    logout,
-    isAuthenticated,
-    user,
-    loading,
-    googleLogin,
-  };
+  return { signup, login, logout, isAuthenticated, user, loading, googleLogin };
 };
