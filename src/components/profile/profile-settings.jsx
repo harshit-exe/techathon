@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { ImageIcon, AtSign, Mail, Phone, MapPin, Calendar } from "lucide-react"
-import { updateProfile } from "../profile/actions"
+import { updateProfile } from "./actions"
 
 export default function ProfileSettings() {
   const [bio, setBio] = useState("")
