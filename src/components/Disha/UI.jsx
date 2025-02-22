@@ -25,7 +25,7 @@ export const UI = ({ hidden, ...props }) => {
   return (
     <>
       <div className="fixed flex  inset-0 z-10  flex-col justify-between p-4 pointer-events-none">
-        <div className="self-start backdrop-blur-md bg-white bg-opacity-50 p-4 rounded-lg">
+        <div className="ml-28 self-start backdrop-blur-md bg-white bg-opacity-50 p-4 rounded-lg">
           <h1 className="font-black text-2xl flex items-center">
             <FaCode className="mr-2" /> Virtual Mentor
           </h1>
@@ -37,9 +37,9 @@ export const UI = ({ hidden, ...props }) => {
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
-              className="bg-white rounded-lg shadow-lg p-4 w-[30%] max-h-[60vh] overflow-y-auto"
+              className="ml-20 bg-white rounded-lg shadow-lg p-4 w-[30%] max-h-[60vh] overflow-y-auto"
             >
-              <h2 className="text-xl font-bold mb-2 flex items-center">
+              <h2 className="text-xl text-black font-bold mb-2 flex items-center">
                 <FaLightbulb className="mr-2 text-yellow-500" /> {tutorResponse.topic}
               </h2>
               <p className="mb-2 text-sm text-gray-700">{tutorResponse.explanation}</p>
@@ -75,7 +75,7 @@ export const UI = ({ hidden, ...props }) => {
               </button>
               {showResources && tutorResponse.resources && tutorResponse.resources.length > 0 && (
                 <div>
-                  <h3 className="text-lg font-bold mb-2 flex items-center">
+                  <h3 className=" text-lg font-bold mb-2 flex items-center">
                     <FaLink className="mr-1 text-green-500" /> Additional Resources
                   </h3>
                   <ul className="space-y-1">

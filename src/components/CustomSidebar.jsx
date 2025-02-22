@@ -28,7 +28,7 @@ const navigationItems = [
       {
         name: "Virtual Mentor",
         icon: "noto:graduation-cap",
-        link: "/dashboard/sidebar/learning-hub/VR",
+        link: "/dashboard/mentor",
       },
       {
         name: "Roadmap Generator",
@@ -102,9 +102,9 @@ const navigationItems = [
     color: "#fb923c",
     children: [
       {
+        link: "/dashboard/sidebar/event-webinars/events",
         name: "Events",
         icon: "noto:party-popper",
-        link: "/dashboard/sidebar/event-webinars/events",
       },
     ],
   },
