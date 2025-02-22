@@ -61,7 +61,7 @@ export default function LoginPage() {
   const handleGoogleLoginSuccess = async (response) => {
     console.log("Google Response:", response);
 
-    // Send the actual credential (JWT) to the backend
+    // ✅ Directly backend ko Google token bhejo
     const res = await googleLogin(response.credential);
 
     if (res.success) {
@@ -110,7 +110,10 @@ export default function LoginPage() {
       >
         {/* Logo and Header */}
         <motion.div className="text-center space-y-4" variants={itemVariants}>
-          <motion.h1 className="logo text-white text-4xl" variants={itemVariants}>
+          <motion.h1
+            className="logo text-white text-4xl"
+            variants={itemVariants}
+          >
             <span className='text-[#6366F1] font-["Rammetto One"]'>D</span>
             ishaMarg
           </motion.h1>
@@ -227,12 +230,10 @@ export default function LoginPage() {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
-          <GoogleOAuthProvider clientId="826677420756-nko3kgf62n3sr85l5spgduhs1qi2o0tq.apps.googleusercontent.com">
-            <GoogleLogin
-              onSuccess={handleGoogleLoginSuccess}
-              onError={() => toast.warn("Login with suppressed Error")}
-            />
-          </GoogleOAuthProvider>
+          <GoogleLogin
+            onSuccess={handleGoogleLoginSuccess}
+            onError={() => toast.warn("Login with suppressed Error")}
+          />
         </motion.button>
       </motion.div>
     </motion.div>
