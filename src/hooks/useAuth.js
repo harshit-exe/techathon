@@ -13,17 +13,29 @@ export const useAuth = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
+        const token = document.cookie
+          .split("; ")
+          .find((row) => row.startsWith("token="))
+          ?.split("=")[1]; // ✅ Token cookie se le lo
+
+        if (!token) {
+          setLoading(false);
+          return;
+        }
+
         const response = await fetch(`${apiURL}/api/auth/me`, {
-          method: "GET",
-          credentials: "include", // ✅ Cookies bhejne ke liye zaroori
+          method: "POST", // ✅ POST request use karni hogi, kyunki body bhej rahe hain
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ token }), // ✅ Token ko body me send karo
         });
 
         if (response.ok) {
           const data = await response.json();
           setIsAuthenticated(true);
           setUser(data.user);
-        } else {
-          setIsAuthenticated(false);
+          console.log(data.user);
         }
       } catch (error) {
         console.error("Auth check failed:", error);
