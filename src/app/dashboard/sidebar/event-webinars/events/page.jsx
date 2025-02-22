@@ -100,27 +100,30 @@ const events = [
     image: "/9999.jpeg",
     link: "https://codemanipal.devfolio.co/"
   }
+  // Add more events here
 ];
 
 export default function Events() {
   return (
     <div className="bg-gray-900 text-white min-h-screen p-6">
-      <h2 className="text-2xl font-bold mb-4">Upcoming Events</h2>
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <h2 className="text-2xl font-bold mb-4 text-center">Upcoming Events</h2>
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {events.map((event) => (
-          <div key={event.id} className="bg-gray-800 rounded-lg overflow-hidden text-sm">
-            <Image src={event.image} alt={event.title} width={300} height={200} className="w-full" />
-            <div className="p-3">
+          <div key={event.id} className="bg-gray-800 rounded-lg overflow-hidden shadow-lg transform transition hover:scale-105">
+            <Image src={event.image} alt={event.title} width={400} height={250} className="w-full h-40 object-cover" />
+            <div className="p-4">
               <span className="bg-blue-600 text-xs uppercase px-2 py-1 rounded-md">{event.category}</span>
-              <h3 className="text-md font-semibold mt-2">{event.title}</h3>
-              <p className="text-xs text-gray-400">{event.organizer}</p>
-              <p className="text-xs text-gray-400 mt-1">📅 {event.date}</p>
-              <div className="flex justify-between items-center mt-2">
-                <span className="text-yellow-400">⭐ {event.match}</span>
-                <span className="text-white font-semibold">{event.price}</span>
+              <h3 className="text-lg font-semibold mt-2">{event.title}</h3>
+              <p className="text-sm text-gray-400">{event.organizer}</p>
+              <p className="text-sm text-gray-400 mt-1">📅 {event.date}</p>
+              <div className="flex justify-between items-center mt-3">
+                <span className="text-yellow-400 font-semibold">⭐ {event.match}</span>
+                <span className="text-white font-bold">{event.price}</span>
               </div>
               <a href={event.link} target="_blank" rel="noopener noreferrer">
-                <button className="mt-3 w-full bg-purple-600 hover:bg-purple-700 text-white py-1 rounded-md text-xs">Register Now</button>
+                <button className="mt-4 w-full bg-blue-600 hover:bg-[#57FF31] text-white py-2 rounded-md text-sm font-medium transition">
+                  Register Now
+                </button>
               </a>
             </div>
           </div>
