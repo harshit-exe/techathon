@@ -15,14 +15,15 @@ export const useAuth = () => {
       try {
         const response = await fetch(`${apiURL}/api/auth/me`, {
           method: "GET",
-          credentials: "include",
+          credentials: "include", // ✅ Cookies bhejne ke liye zaroori
         });
 
         if (response.ok) {
           const data = await response.json();
           setIsAuthenticated(true);
           setUser(data.user);
-          console.log(data.user);
+        } else {
+          setIsAuthenticated(false);
         }
       } catch (error) {
         console.error("Auth check failed:", error);
@@ -59,20 +60,17 @@ export const useAuth = () => {
     try {
       const response = await fetch(`${apiURL}/api/auth/login`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
+        credentials: "include", // Ensure cookies are received
       });
 
       const data = await response.json();
-
       if (data.success) {
         setIsAuthenticated(true);
-        setUser(data.user); // Set user info
-        document.cookie = `token=${data.token}; path=/;`;
+        setUser(data.user);
+        // Remove document.cookie line - backend handles it
       }
-
       return data;
     } catch (error) {
       return { success: false, message: "Login failed" };
@@ -85,16 +83,15 @@ export const useAuth = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token: credential }),
+        credentials: "include", // Include cookies
       });
 
       const data = await response.json();
-
       if (data.success) {
         setIsAuthenticated(true);
-        setUser(data.user); // ✅ User info store karo
-        document.cookie = `token=${data.token}; path=/;`; // ✅ Normal login jaisa token set karo
+        setUser(data.user);
+        // Remove document.cookie line
       }
-
       return data;
     } catch (error) {
       return { success: false, message: "Google login failed" };
