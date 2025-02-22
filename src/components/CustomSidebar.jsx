@@ -327,7 +327,7 @@ export function EnhancedSidebar({ user, onExpandChange, setToggleFunction }) {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Button
               variant="ghost"
-              className="w-full justify-start text-[#ff4e4e] hover:text-[#ff4e4e] hover:bg-[#374151]"
+              className="w-full justify-start text-[#ff4e4e] hover:text-[#e84343] hover:bg-[#374151]"
               onClick={handleLogout}
             >
               <LogOut className="mr-2 h-4 w-4" />
