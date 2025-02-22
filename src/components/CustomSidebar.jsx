@@ -17,6 +17,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { LogOut, ChevronRight, ChevronLeft, Menu } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+import { toast } from "react-toastify";
 
 const navigationItems = [
   {
