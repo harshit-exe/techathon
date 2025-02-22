@@ -13,15 +13,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <GoogleOAuthProvider clientId="826677420756-nko3kgf62n3sr85l5spgduhs1qi2o0tq.apps.googleusercontent.com">
-      <html lang="en">
-        <body className={` antialiased`} suppressHydrationWarning>
-          <ChatProvider>
-            <ToastContainer />
-            {children}
-          </ChatProvider>
-        </body>
-      </html>
-    </GoogleOAuthProvider>
+    <html lang="en">
+      <body className={` antialiased`} suppressHydrationWarning>
+        <ChatProvider>
+          <ToastContainer />
+          {children}
+        </ChatProvider>
+      </body>
+    </html>
   );
 }
