@@ -1,4 +1,16 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {};
-
-export default nextConfig;
+// next.config.js
+const nextConfig = {
+    async headers() {
+      return [
+        {
+          source: "/(.*)",
+          headers: [
+            {
+              key: "Cross-Origin-Opener-Policy",
+              value: "unsafe-none"
+            }
+          ],
+        },
+      ];
+    },
+  };

@@ -1,16 +1,23 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { motion, AnimatePresence } from "framer-motion"
-import { Icon } from "@iconify/react"
-import { cn } from "@/lib/utils"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Separator } from "@/components/ui/separator"
-import { useRouter } from "next/navigation"
-import { Button } from "@/components/ui/button"
-import { LogOut, ChevronRight, ChevronLeft, Menu } from "lucide-react"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
+import { Icon } from "@iconify/react";
+import { cn } from "@/lib/utils";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Separator } from "@/components/ui/separator";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { LogOut, ChevronRight, ChevronLeft, Menu } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
+import { toast } from "react-toastify";
 
 const navigationItems = [
   {
@@ -18,10 +25,22 @@ const navigationItems = [
     icon: "noto:books",
     color: "#60a5fa",
     children: [
-      { name: "Courses", icon: "noto:graduation-cap", link: "/dashboard/courses" },
-      { name: "Roadmap Generator", icon: "noto:world-map", link: "/dashboard/roadmap" },
+      {
+        name: "Courses",
+        icon: "noto:graduation-cap",
+        link: "/dashboard/courses",
+      },
+      {
+        name: "Roadmap Generator",
+        icon: "noto:world-map",
+        link: "/dashboard/roadmap",
+      },
       { name: "AI Mock Test", icon: "noto:robot", link: "/dashboard/mocktest" },
-      { name: "Crash Course Generator", icon: "noto:high-voltage", link: "/dashboard/crashcourse" },
+      {
+        name: "Crash Course Generator",
+        icon: "noto:high-voltage",
+        link: "/dashboard/crashcourse",
+      },
     ],
   },
   {
@@ -29,8 +48,16 @@ const navigationItems = [
     icon: "noto:briefcase",
     color: "#4ade80",
     children: [
-      { name: "Resume Builder", icon: "noto:page-facing-up", link: "/dashboard/resume" },
-      { name: "Mock Interview", icon: "noto:speaking-head", link: "/dashboard/mockinterview" },
+      {
+        name: "Resume Builder",
+        icon: "noto:page-facing-up",
+        link: "/dashboard/resume",
+      },
+      {
+        name: "Mock Interview",
+        icon: "noto:speaking-head",
+        link: "/dashboard/mockinterview",
+      },
       { name: "Code Editor", icon: "noto:laptop", link: "/dashboard/editor" },
     ],
   },
@@ -39,74 +66,92 @@ const navigationItems = [
     icon: "noto:busts-in-silhouette",
     color: "#facc15",
     children: [
-      { name: "Discussion", icon: "noto:speech-balloon", link: "/dashboard/discussion" },
-      { name: "Mentoring", icon: "noto:person-with-blond-hair", link: "/dashboard/mentor" },
+      {
+        name: "Discussion",
+        icon: "noto:speech-balloon",
+        link: "/dashboard/discussion",
+      },
+      {
+        name: "Mentoring",
+        icon: "noto:person-with-blond-hair",
+        link: "/dashboard/mentor",
+      },
     ],
   },
   {
     name: "Events & Updates",
     icon: "noto:spiral-calendar",
     color: "#fb923c",
-    children: [{ name: "Events", icon: "noto:party-popper", link: "/dashboard/events" }],
+    children: [
+      { name: "Events", icon: "noto:party-popper", link: "/dashboard/events" },
+    ],
   },
   {
     name: "Account Settings",
     icon: "noto:gear",
     color: "#c084fc",
-    children: [{ name: "Settings", icon: "noto:wrench", link: "/dashboard/settings" }],
+    children: [
+      { name: "Settings", icon: "noto:wrench", link: "/dashboard/settings" },
+    ],
   },
-]
+];
 
-export function EnhancedSidebar({ user, onExpandChange,setToggleFunction }) {
-  const [isExpanded, setIsExpanded] = useState(true)
-  const [activeItem, setActiveItem] = useState(null)
-  const [hoveredItem, setHoveredItem] = useState(null)
-  const router = useRouter()
+export function EnhancedSidebar({ user, onExpandChange, setToggleFunction }) {
+  const [isExpanded, setIsExpanded] = useState(true);
+  const [activeItem, setActiveItem] = useState(null);
+  const [hoveredItem, setHoveredItem] = useState(null);
+  const router = useRouter();
+  const { logout } = useAuth();
 
-  const handleLogout = () => {
-    router.push("/login")
-    localStorage.clear()
-  }
+  const handleLogout = async () => {
+    const response = await logout();
+    if (response.success) {
+      toast.success("Logout successful!");
+      router.push("/login");
+    } else {
+      toast.error(response.message);
+    }
+  };
 
   const handleItemClick = (item) => {
     if (!isExpanded) {
-      setIsExpanded(true)
+      setIsExpanded(true);
     }
-    setActiveItem(activeItem === item.name ? null : item.name)
-  }
+    setActiveItem(activeItem === item.name ? null : item.name);
+  };
 
   const toggleSidebar = () => {
     setIsExpanded((prev) => !prev);
-    setActiveItem(null)
-    onExpandChange(!isExpanded)
-  }
+    setActiveItem(null);
+    onExpandChange(!isExpanded);
+  };
 
   useEffect(() => {
     if (setToggleFunction) {
       setToggleFunction(toggleSidebar);
     }
   }, []);
-  
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
-        setIsExpanded(false)
-        onExpandChange(false)
+        setIsExpanded(false);
+        onExpandChange(false);
       } else {
-        setIsExpanded(true)
-        onExpandChange(true)
+        setIsExpanded(true);
+        onExpandChange(true);
       }
-    }
+    };
 
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [onExpandChange])
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [onExpandChange]);
 
   return (
     <motion.div
       className={cn(
         "fixed left-0 top-0 h-screen bg-[#191919] text-white transition-all duration-100 ease-in-out z-50 border-r border-[#3c3c3c]",
-        isExpanded ? "w-64" : "w-18",
+        isExpanded ? "w-64" : "w-18"
       )}
       animate={{ width: isExpanded ? 256 : 64 }}
       // transition={{ duration: 0.1 }}
@@ -122,11 +167,14 @@ export function EnhancedSidebar({ user, onExpandChange,setToggleFunction }) {
             >
               ShikshaVerse
             </motion.h2>
-          ) : (
-            // <Icon icon="noto:books" className="w-8 h-8" />
-            null
-          )}
-          <Button variant="ghost" size="icon" onClick={toggleSidebar} className="text-white hover:bg-[#374151]">
+          ) : // <Icon icon="noto:books" className="w-8 h-8" />
+          null}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleSidebar}
+            className="text-white hover:bg-[#374151]"
+          >
             {isExpanded ? <ChevronLeft size={20} /> : <Menu size={20} />}
           </Button>
         </div>
@@ -142,7 +190,7 @@ export function EnhancedSidebar({ user, onExpandChange,setToggleFunction }) {
                         "flex items-center p-2 rounded-lg cursor-pointer transition-colors",
                         activeItem === item.name || hoveredItem === item.name
                           ? "bg-[#374151] text-white"
-                          : "text-[#9ca3af] hover:bg-[#374151] hover:text-white",
+                          : "text-[#9ca3af] hover:bg-[#374151] hover:text-white"
                       )}
                       onClick={() => handleItemClick(item)}
                       onHoverStart={() => setHoveredItem(item.name)}
@@ -150,13 +198,24 @@ export function EnhancedSidebar({ user, onExpandChange,setToggleFunction }) {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      <Icon icon={item.icon} className="w-6 h-6 mr-3" style={{ color: item.color }} />
-                      {isExpanded && <span className="text-sm">{item.name}</span>}
-                      {isExpanded && activeItem === item.name && <ChevronRight className="ml-auto w-4 h-4" />}
+                      <Icon
+                        icon={item.icon}
+                        className="w-6 h-6 mr-3"
+                        style={{ color: item.color }}
+                      />
+                      {isExpanded && (
+                        <span className="text-sm">{item.name}</span>
+                      )}
+                      {isExpanded && activeItem === item.name && (
+                        <ChevronRight className="ml-auto w-4 h-4" />
+                      )}
                     </motion.div>
                   </TooltipTrigger>
                   {!isExpanded && (
-                    <TooltipContent side="right" className="bg-[#374151] text-white">
+                    <TooltipContent
+                      side="right"
+                      className="bg-[#374151] text-white"
+                    >
                       {item.name}
                     </TooltipContent>
                   )}
@@ -176,7 +235,11 @@ export function EnhancedSidebar({ user, onExpandChange,setToggleFunction }) {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                           >
-                            <Icon icon={child.icon} className="w-5 h-5 mr-3" style={{ color: item.color }} />
+                            <Icon
+                              icon={child.icon}
+                              className="w-5 h-5 mr-3"
+                              style={{ color: item.color }}
+                            />
                             <span className="text-sm">{child.name}</span>
                           </motion.div>
                         </Link>
@@ -204,17 +267,25 @@ export function EnhancedSidebar({ user, onExpandChange,setToggleFunction }) {
         <div className="p-4 flex items-center">
           <Avatar className="w-10 h-10 border-2 border-[#6366F1]">
             <AvatarImage src={user?.pic} alt={user?.username} />
-            <AvatarFallback className="bg-[#2563eb] text-white">{user?.username?.charAt(0)}</AvatarFallback>
+            <AvatarFallback className="bg-[#2563eb] text-white">
+              {user?.username?.charAt(0)}
+            </AvatarFallback>
           </Avatar>
           {isExpanded && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="ml-3">
-              <p className="text-sm font-medium text-white">{user?.username}</p>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="ml-3"
+            >
+              <p className="text-sm font-medium text-white">
+                {user?.firstName}
+              </p>
               <p className="text-xs text-[#9ca3af]">{user?.email}</p>
             </motion.div>
           )}
         </div>
       </div>
     </motion.div>
-  )
+  );
 }
-
