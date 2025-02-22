@@ -1,14 +1,26 @@
-"use client"; // Ensures it's a client-side component
+"use client"
 
-import React from "react";
+import { useState } from "react"
+import RoadmapForm from "@/components/RoadMap/RoadmapForm"
+import RoadmapVisualization from "@/components/RoadMap/RoadmapVisualization"
 
-const MentorPage = () => {
+export default function CareerRoadmapPage() {
+  const [roadmapData, setRoadmapData] = useState(null)
+  const [showVisualization, setShowVisualization] = useState(false)
+
+  const handleRoadmapComplete = () => {
+    setShowVisualization(true)
+  }
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
-      <h1 className="text-3xl font-bold text-blue-600">Mentor Page</h1>
-      <p className="text-gray-700 mt-2">Welcome to the mentor section.</p>
+    <div className="min-h-screen bg-black text-white p-8">
+      <h1 className="text-4xl font-bold mb-8 text-center">Career Development Roadmap</h1>
+      {!showVisualization ? (
+        <RoadmapForm setRoadmapData={setRoadmapData} onComplete={handleRoadmapComplete} />
+      ) : (
+        <RoadmapVisualization roadmapData={roadmapData} />
+      )}
     </div>
-  );
-};
+  )
+}
 
-export default MentorPage;

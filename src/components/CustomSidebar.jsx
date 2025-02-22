@@ -33,7 +33,7 @@ const navigationItems = [
       {
         name: "Roadmap Generator",
         icon: "noto:world-map",
-        link: "/sidebar/account-settings/sidebar/learning-hub/roadmap",
+        link: "/dashboard/sidebar/learning-hub/roadmap",
       },
       {
         name: "AI Mock Test",
