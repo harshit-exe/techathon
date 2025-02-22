@@ -31,8 +31,8 @@ export default function Home() {
                 className="logomain"
               >
                 <h1 className="logo text-white">
-                  <span className='text-[#6366F1] font-["Rammetto One"]'>S</span>
-                  hikshaVerse
+                  <span className='text-[#6366F1] font-["Rammetto One"]'>D</span>
+                  ishaMarg
                 </h1>
               </motion.div>
               <motion.div
@@ -54,7 +54,7 @@ export default function Home() {
               transition={{ delay: 0.4 }}
               className="cta w-[90vw] mx-auto flex flex-col items-center justify-center mr-10"
             >
-              <h1 className="font-colombo font-medium text-9xl text-center text-[#6366F1]">Learn Smarter with AI</h1>
+              <h1 className="font-colombo font-medium text-9xl text-center text-[#6366F1]">मार्गदर्शन for Success with AI</h1>
               <div className="cta-img mr-10">
                 <Image src="/robot.png" width={200} height={300} alt="AI Robot" className="object-cover" />
               </div>
@@ -84,12 +84,12 @@ export default function Home() {
             <div className="nav ml-5 mt-5 flex justify-between items-center p-5">
               <div className="logomain">
                 <h1 className="logo text-white">
-                  <span className='text-[#6366F1] font-["Rammetto One"]'>S</span>
-                  hikshaVerse
+                  <span className='text-[#6366F1] font-["Rammetto One"]'>D</span>
+                  ishaMarg
                 </h1>
               </div>
               <div className="name flex items-center justify-center pt-2">
-                <h1 className="text-white font-colombo font-medium text-3xl text-center">Learn Smarter with AI</h1>
+                <h1 className="text-white font-colombo font-medium text-3xl text-center">मार्गदर्शन for Success with AI</h1>
               </div>
               <div className="button pr-4">
                 <button className="bg-white"
