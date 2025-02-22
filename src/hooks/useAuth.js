@@ -13,9 +13,22 @@ export const useAuth = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
+        const token = document.cookie
+          .split("; ")
+          .find((row) => row.startsWith("token="))
+          ?.split("=")[1]; // ✅ Token cookie se le lo
+
+        if (!token) {
+          setLoading(false);
+          return;
+        }
+
         const response = await fetch(`${apiURL}/api/auth/me`, {
-          method: "GET",
-          credentials: "include",
+          method: "POST", // ✅ POST request use karni hogi, kyunki body bhej rahe hain
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ token }), // ✅ Token ko body me send karo
         });
 
         if (response.ok) {
@@ -59,20 +72,17 @@ export const useAuth = () => {
     try {
       const response = await fetch(`${apiURL}/api/auth/login`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
+        credentials: "include", // Ensure cookies are received
       });
 
       const data = await response.json();
-
       if (data.success) {
         setIsAuthenticated(true);
-        setUser(data.user); // Set user info
-        document.cookie = `token=${data.token}; path=/;`;
+        setUser(data.user);
+        // Remove document.cookie line - backend handles it
       }
-
       return data;
     } catch (error) {
       return { success: false, message: "Login failed" };
@@ -85,16 +95,15 @@ export const useAuth = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token: credential }),
+        credentials: "include", // Include cookies
       });
 
       const data = await response.json();
-
       if (data.success) {
         setIsAuthenticated(true);
-        setUser(data.user); // ✅ User info store karo
-        document.cookie = `token=${data.token}; path=/;`; // ✅ Normal login jaisa token set karo
+        setUser(data.user);
+        // Remove document.cookie line
       }
-
       return data;
     } catch (error) {
       return { success: false, message: "Google login failed" };
