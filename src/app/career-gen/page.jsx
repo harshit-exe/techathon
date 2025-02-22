@@ -101,7 +101,7 @@ export default function CareerSwipe() {
   if (isLoading) {
     return (
       <div className="flex flex-col items-center justify-center h-[90vh]  text-white p-4">
-        <h1 className="text-4xl font-bold mb-8 text-center text-[#6366F1]">AI is cooking up your results! 👨‍🍳✨</h1>
+        <h1 className="text-4xl font-bold mb-8 text-center text-[#6366F1]">👨‍🍳 AI is cooking up your results! ✨</h1>
         <div className="w-24 h-24 border-t-4 border-[#57FF31] border-solid rounded-full animate-spin"></div>
         <p className="mt-4 text-xl text-[#57FF31]">Analyzing your tech DNA...</p>
       </div>
@@ -175,7 +175,7 @@ export default function CareerSwipe() {
               <Card className="w-full h-full bg-gray-900 shadow-xl rounded-xl overflow-hidden flex flex-col border-2 border-[#6366F1]">
                 <div className="relative h-1/3 overflow-hidden">
                   <img
-                    src={`https://picsum.photos/seed/${encodeURIComponent(question.imagePrompt)}/400/200`}
+                    src={`https://picsum.photos/seed/${encodeURIComponent(question.imagePrompt)}/400/100`}
                     alt="Question visual"
                     className="w-full h-full object-cover"
                   />
@@ -184,7 +184,7 @@ export default function CareerSwipe() {
                 <div className="p-4 flex flex-col flex-grow justify-between">
                   <div>
                     <div className="text-4xl mb-2 text-center">{question.icon}</div>
-                    <h2 className="text-xl font-bold text-center mb-4">{question.question}</h2>
+                    <h2 className="text-xl font-bold text-center mb-4 text-white">{question.question}</h2>
                   </div>
                   <div className="flex justify-between items-center">
                     <motion.div
