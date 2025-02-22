@@ -9,9 +9,7 @@ import "./styles.css";
 import { useAuth } from "@/hooks/useAuth";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import dotenv from "dotenv";
-import { jwtDecode } from "jwt-decode";
 
 dotenv.config();
 
@@ -56,21 +54,6 @@ export default function LoginPage() {
     // } catch (error) {
     //   console.error("Login failed:", error)
     // }
-  };
-
-  const handleGoogleLoginSuccess = async (response) => {
-    console.log("Google Response:", response);
-
-    // ✅ Directly backend ko Google token bhejo
-    const res = await googleLogin(response.credential);
-
-    if (res.success) {
-      toast.success("Google login successful!");
-      router.push("/dashboard");
-    } else {
-      console.log(res);
-      toast.error(res.message);
-    }
   };
 
   const containerVariants = {
@@ -213,17 +196,17 @@ export default function LoginPage() {
         </motion.form>
 
         {/* Divider */}
-        <motion.div className="relative py-4" variants={itemVariants}>
+        {/* <motion.div className="relative py-4" variants={itemVariants}>
           <div className="absolute inset-0 flex items-center">
             <div className="w-full border-t border-gray-800"></div>
           </div>
           <div className="relative flex justify-center text-sm">
             <span className="px-4 text-gray-500 bg-black">Or</span>
           </div>
-        </motion.div>
+        </motion.div> */}
 
         {/* Google Login */}
-        <motion.button
+        {/* <motion.button
           type="button"
           className="w-full border border-gray-800 rounded-md py-3 px-4 flex items-center justify-center space-x-2 hover:bg-gray-900 transition-colors"
           variants={itemVariants}
@@ -234,7 +217,7 @@ export default function LoginPage() {
             onSuccess={handleGoogleLoginSuccess}
             onError={() => toast.warn("Login with suppressed Error")}
           />
-        </motion.button>
+        </motion.button> */}
       </motion.div>
     </motion.div>
   );
