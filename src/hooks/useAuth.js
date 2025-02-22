@@ -68,7 +68,7 @@ export const useAuth = () => {
 
       return data;
     } catch (error) {
-      return { success: false, message: "Login failed" };
+      return { success: false, message: "Login Failed" };
     }
   };
 
