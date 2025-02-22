@@ -100,47 +100,19 @@ const navigationItems = [
     name: "Events & Webinars",
     icon: "noto:spiral-calendar",
     color: "#fb923c",
-    children: [
-      {
-        link: "/dashboard/sidebar/event-webinars/events",
-        name: "Events",
-        icon: "noto:party-popper",
-      },
-    ],
+    link: "/dashboard/sidebar/event-webinars/events",
   },
   {
-    name: "Gamification",
+    name: "Astrotalks",
     icon: "noto:video-game",
     color: "#ff6b6b",
-    children: [
-      {
-        name: "Astrotalks",
-        icon: "noto:milky-way",
-        link: "/dashboard/sidebar/gamification/astrotalks",
-      },
-      {
-        name: "Games",
-        icon: "noto:question-mark",
-        link: "/dashboard/sidebar/gamification/Games",
-      },
-    ],
+    link: "/dashboard/sidebar/gamification/astrotalks",
   },
   {
     name: "Account Settings",
     icon: "noto:gear",
     color: "#c084fc",
-    children: [
-      {
-        name: "Profile Settings",
-        icon: "noto:wrench",
-        link: "/dashboard/sidebar/account-settings/settings",
-      },
-      {
-        name: "News and Updates",
-        icon: "noto:bell",
-        link: "/dashboard/sidebar/account-settings/news",
-      },
-    ],
+    link: "/dashboard/sidebar/account-settings/settings",
   },
 ];
 
@@ -165,7 +137,12 @@ export function EnhancedSidebar({ user, onExpandChange, setToggleFunction }) {
     if (!isExpanded) {
       setIsExpanded(true);
     }
-    setActiveItem(activeItem === item.name ? null : item.name);
+  
+    if (item.children) {
+      setActiveItem(activeItem === item.name ? null : item.name);
+    } else if (item.link) {
+      router.push(item.link); // Redirect to the parent route
+    }
   };
 
   const toggleSidebar = () => {

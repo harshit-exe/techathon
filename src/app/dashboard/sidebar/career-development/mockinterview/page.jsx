@@ -10,13 +10,14 @@ import { Label } from "@/components/ui/label"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
 import { AlertCircle, Maximize, Minimize } from "lucide-react"
 import { useGroqAI } from "@/components/Interview/useGroqAI"
 import { useVoiceInput } from "@/components/Interview/useVoiceInput"
 import { useTextToSpeech } from "@/components/Interview/useTextToSpeech"
 import { QuestionAnswer } from "@/components/Interview/QuestionAnswer"
-import { FaceDetection } from "@/components/Interview/FaceDetection"
 import { BehaviorTracker } from "@/components/Interview/BehaviorTracker"
+import { FaceDetection } from "@/components/Interview/FaceDetection"
 
 const defaultCareerPaths = [
   { value: "software-engineering", label: "Software Engineering" },
@@ -57,6 +58,7 @@ export default function CareerGuidanceInterviewSimulator() {
   const [showWarning, setShowWarning] = useState(false)
   const [interviewHistory, setInterviewHistory] = useState([])
   const [currentTab, setCurrentTab] = useState("interview")
+  const [faceDetectionWarning, setFaceDetectionWarning] = useState(null)
 
   const { generateQuestion, evaluateAnswer, isLoading, error: aiError } = useGroqAI()
   const { startListening, stopListening, resetTranscript, transcript, isListening, error: voiceError } = useVoiceInput()
@@ -69,6 +71,7 @@ export default function CareerGuidanceInterviewSimulator() {
     },
     [speak],
   )
+
   const startInterview = useCallback(async () => {
     if (!selectedCareerPath) return
     setIsInterviewStarted(true)
@@ -141,7 +144,6 @@ export default function CareerGuidanceInterviewSimulator() {
     }
   }, [selectedCareerPath, generateQuestion, useAIVoice, isIntroduction, speakWithTracking])
 
-
   const handleStopSpeaking = useCallback(() => {
     stopSpeaking()
     setIsSpeaking(false)
@@ -149,6 +151,10 @@ export default function CareerGuidanceInterviewSimulator() {
 
   const handleBehaviorUpdate = useCallback((newBehavior) => {
     setBehaviorData((prevData) => [...prevData, newBehavior])
+  }, [])
+
+  const handleFaceDetectionWarning = useCallback((warning) => {
+    setFaceDetectionWarning(warning)
   }, [])
 
   const stopInterview = useCallback(() => {
@@ -260,13 +266,15 @@ export default function CareerGuidanceInterviewSimulator() {
   }
 
   return (
-    <div className={`min-h-screen bg-black text-white p-8 ${isFullScreen ? "fixed inset-0 z-50" : ""}`}>
-      <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-4xl font-bold text-[#6366F1] mx-auto">AI Career Guidance Assistant</h1>
+    <div
+      className={`min-h-screen min-w-screen bg-black bg-contain text-white p-4 ${isFullScreen ? "fixed inset-0 z-50" : ""}`}
+    >
+          <h1 className="text-3xl font-bold text-[#6366F1] text-center">AI Career Guidance Assistant</h1>
+      <div className="max-w-7xl mx-auto h-full flex flex-col">
+        <div className="flex justify-between items-center mb-4">
           {isInterviewStarted && (
             <div className="flex items-center space-x-4">
-              {showTimer && <div className="text-2xl font-bold text-[#57FF31]">Time: {formatTime(timeRemaining)}</div>}
+              {showTimer && <div className="text-xl font-bold text-[#57FF31]">Time: {formatTime(timeRemaining)}</div>}
               <Button variant="outline" onClick={toggleFullScreen} className="bg-gray-800 hover:bg-gray-700">
                 {isFullScreen ? <Minimize className="h-4 w-4" /> : <Maximize className="h-4 w-4" />}
               </Button>
@@ -295,8 +303,16 @@ export default function CareerGuidanceInterviewSimulator() {
           </Alert>
         )}
 
+        {faceDetectionWarning && (
+          <Alert variant="warning" className="mb-4 bg-yellow-900 text-white">
+            <AlertCircle className="h-4 w-4" />
+            <AlertTitle>Face Detection Warning</AlertTitle>
+            <AlertDescription>{faceDetectionWarning}</AlertDescription>
+          </Alert>
+        )}
+
         {!isInterviewStarted ? (
-          <Card className="max-w-2xl mx-auto bg-gray-900 text-white">
+          <Card className="max-w-2xl mx-auto bg-gray-800 text-white border-[#6366F1] border-2">
             <CardHeader>
               <CardTitle className="text-2xl font-semibold text-center text-[#6366F1]">
                 Explore Your Career Path
@@ -308,10 +324,10 @@ export default function CareerGuidanceInterviewSimulator() {
               </p>
               <div className="flex flex-col items-center gap-4">
                 <Select onValueChange={setSelectedCareerPath}>
-                  <SelectTrigger className="w-full bg-gray-800 text-white">
+                  <SelectTrigger className="w-full bg-gray-700 text-white border-[#6366F1]">
                     <SelectValue placeholder="Choose career path" />
                   </SelectTrigger>
-                  <SelectContent className="bg-gray-800 text-white">
+                  <SelectContent className="bg-gray-700 text-white">
                     {careerPaths.map((path) => (
                       <SelectItem key={path.value} value={path.value}>
                         {path.label}
@@ -325,17 +341,17 @@ export default function CareerGuidanceInterviewSimulator() {
                     placeholder="Add new career path"
                     value={newCareerPath}
                     onChange={(e) => setNewCareerPath(e.target.value)}
-                    className="bg-gray-800 text-white"
+                    className="bg-gray-700 text-white border-[#6366F1]"
                   />
                   <Button onClick={addNewCareerPath} className="bg-[#6366F1] hover:bg-[#4F46E5] text-white">
                     Add
                   </Button>
                 </div>
                 <Select value={educationLevel} onValueChange={setEducationLevel}>
-                  <SelectTrigger className="w-full bg-gray-800 text-white">
+                  <SelectTrigger className="w-full bg-gray-700 text-white border-[#6366F1]">
                     <SelectValue placeholder="Select education level" />
                   </SelectTrigger>
-                  <SelectContent className="bg-gray-800 text-white">
+                  <SelectContent className="bg-gray-700 text-white">
                     {educationLevels.map((level) => (
                       <SelectItem key={level.value} value={level.value}>
                         {level.label}
@@ -354,7 +370,7 @@ export default function CareerGuidanceInterviewSimulator() {
                     step={5}
                     value={[interviewDuration]}
                     onValueChange={(value) => setInterviewDuration(value[0])}
-                    className="bg-gray-800"
+                    className="bg-gray-700"
                   />
                 </div>
                 <div className="flex items-center space-x-2">
@@ -380,91 +396,97 @@ export default function CareerGuidanceInterviewSimulator() {
             </CardContent>
           </Card>
         ) : (
-          <Tabs value={currentTab} onValueChange={setCurrentTab} className="w-full">
-            <TabsList className="grid w-full grid-cols-2 bg-gray-800">
-              <TabsTrigger value="interview" className="text-white">
-                Guidance Session
-              </TabsTrigger>
-              <TabsTrigger value="history" className="text-white">
-                Session History
-              </TabsTrigger>
-            </TabsList>
-            <TabsContent value="interview">
-              <div className="grid md:grid-cols-2 gap-8">
-                <div className="space-y-8">
-                  <FaceDetection onBehaviorUpdate={handleBehaviorUpdate} />
-                  <BehaviorTracker behaviorData={behaviorData} />
-                </div>
-                <div className="space-y-8">
-                  <QuestionAnswer
-                    currentQuestion={currentQuestion}
-                    userAnswer={userAnswer}
-                    isAnswering={isAnswering}
-                    transcript={transcript}
-                    isSpeaking={isSpeaking}
-                    feedback={feedback}
-                    startAnswering={startAnswering}
-                    stopAnswering={stopAnswering}
-                    handleStopSpeaking={handleStopSpeaking}
-                    speakWithTracking={speakWithTracking}
-                    useAIVoice={useAIVoice}
-                    nextQuestion={nextQuestion}
-                  />
-                  <Card className="bg-gray-900 text-white">
-                    <CardContent className="p-6">
-                      <h3 className="text-lg font-semibold mb-2 text-[#6366F1]">Career Fit Metrics</h3>
-                      <div className="space-y-2">
-                        <div>
-                          <div className="flex justify-between mb-1">
-                            <span>Career Fit Score</span>
-                            <span>{careerFitScore.toFixed(2)}%</span>
+          <div className="flex-grow overflow-hidden">
+            <Tabs value={currentTab} onValueChange={setCurrentTab} className="h-full flex flex-col">
+              <TabsList className="grid w-full grid-cols-2 bg-gray-800">
+                <TabsTrigger value="interview" className="text-white">
+                  Guidance Session
+                </TabsTrigger>
+                <TabsTrigger value="history" className="text-white">
+                  Session History
+                </TabsTrigger>
+              </TabsList>
+              <TabsContent value="interview" className="flex-grow overflow-auto">
+                <div className="grid md:grid-cols-2 gap-4 h-full">
+                  <div className="space-y-4">
+                    <FaceDetection onBehaviorUpdate={handleBehaviorUpdate} onWarning={handleFaceDetectionWarning} />
+                    <BehaviorTracker behaviorData={behaviorData} />
+                  </div>
+                  <div className="space-y-4">
+                    <QuestionAnswer
+                      currentQuestion={currentQuestion}
+                      userAnswer={userAnswer}
+                      isAnswering={isAnswering}
+                      transcript={transcript}
+                      isSpeaking={isSpeaking}
+                      feedback={feedback}
+                      startAnswering={startAnswering}
+                      stopAnswering={stopAnswering}
+                      handleStopSpeaking={handleStopSpeaking}
+                      speakWithTracking={speakWithTracking}
+                      useAIVoice={useAIVoice}
+                      nextQuestion={nextQuestion}
+                    />
+                    <Card className="bg-gray-800 text-white border-[#6366F1] border-2">
+                      <CardContent className="p-4">
+                        <h3 className="text-lg font-semibold mb-2 text-[#6366F1]">Career Fit Metrics</h3>
+                        <div className="space-y-2">
+                          <div>
+                            <div className="flex justify-between mb-1">
+                              <span>Career Fit Score</span>
+                              <span>{careerFitScore.toFixed(2)}%</span>
+                            </div>
+                            <Progress
+                              value={careerFitScore}
+                              className="w-full bg-gray-700"
+                              indicatorColor="bg-[#57FF31]"
+                            />
                           </div>
-                          <Progress
-                            value={careerFitScore}
-                            className="w-full bg-gray-700"
-                            indicatorColor="bg-[#57FF31]"
-                          />
-                        </div>
-                        <div>
-                          <div className="flex justify-between mb-1">
-                            <span>Overall Performance</span>
-                            <span>{overallPerformance.toFixed(2)}%</span>
+                          <div>
+                            <div className="flex justify-between mb-1">
+                              <span>Overall Performance</span>
+                              <span>{overallPerformance.toFixed(2)}%</span>
+                            </div>
+                            <Progress
+                              value={overallPerformance}
+                              className="w-full bg-gray-700"
+                              indicatorColor="bg-[#57FF31]"
+                            />
                           </div>
-                          <Progress
-                            value={overallPerformance}
-                            className="w-full bg-gray-700"
-                            indicatorColor="bg-[#57FF31]"
-                          />
                         </div>
-                      </div>
-                    </CardContent>
-                  </Card>
+                      </CardContent>
+                    </Card>
+                  </div>
                 </div>
-              </div>
-            </TabsContent>
-            <TabsContent value="history">
-              <Card className="bg-gray-900 text-white">
-                <CardContent className="p-6">
-                  <h2 className="text-2xl font-semibold mb-4 text-[#6366F1]">Session History</h2>
-                  {interviewHistory.map((item, index) => (
-                    <div key={index} className="mb-6 p-4 bg-gray-800 rounded-lg shadow">
-                      <h3 className="text-lg font-semibold mb-2 text-[#6366F1]">Question {index + 1}:</h3>
-                      <p className="text-gray-300 mb-2">{item.question}</p>
-                      <h4 className="text-md font-semibold mb-1 text-[#57FF31]">Your Answer:</h4>
-                      <p className="text-gray-400 mb-2">{item.answer}</p>
-                      <h4 className="text-md font-semibold mb-1 text-[#57FF31]">Feedback:</h4>
-                      <p className="text-gray-400 mb-2">{item.feedback}</p>
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm font-medium text-gray-300">Career Fit Score:</span>
-                        <span className="text-sm font-bold text-[#57FF31]">{item.score.toFixed(2)}%</span>
+              </TabsContent>
+              <TabsContent value="history" className="flex-grow overflow-auto">
+                <Card className="bg-gray-800 text-white border-[#6366F1] border-2">
+                  <CardContent className="p-4">
+                    <h2 className="text-2xl font-semibold mb-4 text-[#6366F1]">Session History</h2>
+                    {interviewHistory.map((item, index) => (
+                      <div key={index} className="mb-4 p-4 bg-gray-700 rounded-lg shadow">
+                        <h3 className="text-lg font-semibold mb-2 text-[#6366F1]">Question {index + 1}:</h3>
+                        <p className="text-gray-300 mb-2">{item.question}</p>
+                        <h4 className="text-md font-semibold mb-1 text-[#57FF31]">Your Answer:</h4>
+                        <p className="text-gray-400 mb-2">{item.answer}</p>
+                        <h4 className="text-md font-semibold mb-1 text-[#57FF31]">Feedback:</h4>
+                        <p className="text-gray-400 mb-2">{item.feedback}</p>
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm font-medium text-gray-300">Career Fit Score:</span>
+                          <span className="text-sm font-bold text-[#57FF31]">{item.score.toFixed(2)}%</span>
+                        </div>
+                        <Progress
+                          value={item.score}
+                          className="w-full mt-1 bg-gray-700"
+                          indicatorColor="bg-[#57FF31]"
+                        />
                       </div>
-                      <Progress value={item.score} className="w-full mt-1 bg-gray-700" indicatorColor="bg-[#57FF31]" />
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-            </TabsContent>
-          </Tabs>
+                    ))}
+                  </CardContent>
+                </Card>
+              </TabsContent>
+            </Tabs>
+          </div>
         )}
       </div>
     </div>

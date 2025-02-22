@@ -48,7 +48,7 @@ const TopicSelector = ({ onTopicSubmit }) => {
       transition={{ duration: 0.5 }}
       className="bg-gray-900 rounded-lg p-6 mb-4 shadow-lg"
     >
-      <h2 className="text-2xl font-bold mb-4 text-[#57FF31]">Choose Your Career Topic</h2>
+      <h2 className="text-2xl font-bold mb-4 text-white">Choose Your Career Topic</h2>
       <SearchBar onSearch={onTopicSubmit} suggestions={allTopics} />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
         {predefinedTopics.map((topic) => (
@@ -56,7 +56,7 @@ const TopicSelector = ({ onTopicSubmit }) => {
             key={topic.id}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="p-4 bg-[#4F46E5] text-white rounded-lg hover:bg-[#3c3799] transition-colors text-left flex items-center space-x-3"
+            className="p-4 bg-[#312c82] text-white rounded-lg hover:bg-[#5c56d9] transition-colors text-left flex items-center space-x-3"
             onClick={() => onTopicSubmit(topic.name)}
           >
             <topic.icon className="w-6 h-6" />
