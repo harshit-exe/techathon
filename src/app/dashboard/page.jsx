@@ -33,7 +33,7 @@ export default function Dashboard() {
   ]
 
   return (
-    <div className="min-h-screen bg-[#000000] text-white">
+    <div className="min-h-screen  text-white">
       {/* Header */}
   
 
