@@ -22,8 +22,8 @@ export default function RootLayout({ children }) {
         <ChatProvider>
 
         <ToastContainer />
-        </ChatProvider>
         {children}
+        </ChatProvider>
       </body>
     </html>
   );
