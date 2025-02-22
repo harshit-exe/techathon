@@ -61,7 +61,6 @@ export const useAuth = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include", // Add this line
         body: JSON.stringify(formData),
       });
 
@@ -69,8 +68,8 @@ export const useAuth = () => {
 
       if (data.success) {
         setIsAuthenticated(true);
-        setUser(data.user);
-        // Remove document.cookie line - backend handles cookie
+        setUser(data.user); // Set user info
+        document.cookie = `token=${data.token}; path=/;`;
       }
 
       return data;
@@ -94,7 +93,8 @@ export const useAuth = () => {
       if (data.success) {
         setIsAuthenticated(false);
         setUser(null);
-        // Remove manual cookie clearing - backend handles it
+        document.cookie =
+          "token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
       }
 
       return data;
