@@ -35,7 +35,7 @@ export function BehaviorTracker({ behaviorData }) {
             <h3 className="text-sm font-medium text-gray-300 mb-1">Overall Engagement</h3>
             <Progress
               value={calculateOverallEngagement()}
-              className="w-full bg-gray-700"
+              className="w-full bg-gray-400"
               indicatorColor="bg-[#57FF31]"
             />
           </div>
@@ -43,7 +43,7 @@ export function BehaviorTracker({ behaviorData }) {
             <h3 className="text-sm font-medium text-gray-300 mb-1">Overall Attentiveness</h3>
             <Progress
               value={calculateOverallAttentiveness()}
-              className="w-full bg-gray-700"
+              className="w-full bg-gray-400"
               indicatorColor="bg-[#57FF31]"
             />
           </div>

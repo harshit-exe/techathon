@@ -105,8 +105,8 @@ const events = [
 
 export default function Events() {
   return (
-    <div className="bg-gray-900 text-white min-h-screen p-6">
-      <h2 className="text-2xl font-bold mb-4 text-center">Upcoming Events</h2>
+    <div className="bg-transparent text-white min-h-screen p-6">
+      <h2 className="text-5xl font-bold mb-8 text-center"><span className="text-blue-600">U</span>pcoming Events</h2>
       <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {events.map((event) => (
           <div key={event.id} className="bg-gray-800 rounded-lg overflow-hidden shadow-lg transform transition hover:scale-105">
