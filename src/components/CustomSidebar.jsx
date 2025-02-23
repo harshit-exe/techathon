@@ -96,12 +96,12 @@ const navigationItems = [
       },
     ],
   },
-  {
-    name: "Jobs and Internships",
-    icon: "noto:spiral-calendar",
-    color: "#fb923c",
-    link: "/dashboard/sidebar/event-webinars/Jobs",
-  },
+  // {
+  //   name: "Jobs and Internships",
+  //   icon: "noto:spiral-calendar",
+  //   color: "#fb923c",
+  //   link: "/dashboard/sidebar/event-webinars/Jobs",
+  // },
   {
     name: "Events & Webinars",
     icon: "noto:spiral-calendar",

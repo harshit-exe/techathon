@@ -76,15 +76,15 @@ const menuItems = [
       { name: "Certificates", icon: <FaAward className="text-orange-500" /> },
     ],
   },
-  {
-    title: "Jobs",
-    icon: <FaBriefcase className="text-purple-400" />,
-    items: [
-      { name: "Internships", icon: <FaMedal className="text-blue-500" /> },
-      { name: "Jobs", icon: <FaBuilding className="text-green-500" /> },
-      { name: "Company Details", icon: <FaChartBar className="text-yellow-500" /> },
-    ],
-  },
+  // {
+  //   title: "Jobs",
+  //   icon: <FaBriefcase className="text-purple-400" />,
+  //   items: [
+  //     { name: "Internships", icon: <FaMedal className="text-blue-500" /> },
+  //     { name: "Jobs", icon: <FaBuilding className="text-green-500" /> },
+  //     { name: "Company Details", icon: <FaChartBar className="text-yellow-500" /> },
+  //   ],
+  // },
   {
     title: "Gamification",
     icon: <FaTrophy className="text-yellow-400" />,
