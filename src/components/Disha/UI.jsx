@@ -113,7 +113,7 @@ export const UI = ({ hidden, ...props }) => {
             <button
               disabled={loading || message}
               onClick={sendMessage}
-              className={`bg-blue-500 hover:bg-blue-600 text-white py-4 px-8 font-semibold uppercase rounded-full shadow-lg transition-all duration-300 flex items-center text-sm ${
+              className={`bg-blue-500 hover:bg-blue-600 text-white p-7 px-7 font-semibold uppercase rounded-full shadow-lg transition-all duration-300 flex items-center text-sm ${
                 loading || message ? "cursor-not-allowed opacity-30" : ""
               }`}
             >
@@ -122,7 +122,7 @@ export const UI = ({ hidden, ...props }) => {
           </div>
           <button
             onClick={() => setCameraZoomed(!cameraZoomed)}
-            className="ml-5 bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-full shadow-lg transition-all duration-300"
+            className="ml-5 bg-blue-500 hover:bg-blue-600 text-white  p-7 px-7 rounded-full shadow-lg transition-all duration-300"
           >
             {cameraZoomed ? (
               <svg
