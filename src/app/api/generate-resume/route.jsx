@@ -1,6 +1,5 @@
-
 import { NextResponse } from "next/server"
-import PDFDocument from "pdfkit"
+import jsPDF from "jspdf"
 
 export async function POST(req) {
   try {
@@ -20,114 +19,81 @@ export async function POST(req) {
   }
 }
 
-
 async function generateResumePDF(data) {
-  return new Promise((resolve) => {
-    const doc = new PDFDocument({ margin: 50, size: "A4" })
-    const chunks = []
+  const doc = new jsPDF()
 
-    doc.on("data", (chunk) => chunks.push(chunk))
-    doc.on("end", () => resolve(Buffer.concat(chunks)))
+  // Helper functions
+  const addSection = (title, y) => {
+    doc.setFontSize(16)
+    doc.setFont("helvetica", "bold")
+    doc.text(title.toUpperCase(), 20, y)
+    return y + 10
+  }
 
-    // Helper functions
-    const addSection = (title) => {
-      doc.fillColor("#333333").fontSize(16).font("Helvetica-Bold").text(title.toUpperCase())
-      doc.moveDown(0.5)
-    }
+  const addSubSection = (title, y) => {
+    doc.setFontSize(14)
+    doc.setFont("helvetica", "bold")
+    doc.text(title, 20, y)
+    return y + 7
+  }
 
-    const addSubSection = (title) => {
-      doc.fillColor("#555555").fontSize(14).font("Helvetica-Bold").text(title)
-      doc.moveDown(0.3)
-    }
+  let y = 20
 
-    // Set background color
-    doc.rect(0, 0, doc.page.width, doc.page.height).fill("#f4f4f4")
+  // Header
+  doc.setFontSize(24)
+  doc.setFont("helvetica", "bold")
+  doc.text(data.personalInfo.fullName, 105, y, { align: "center" })
+  y += 10
+  doc.setFontSize(12)
+  doc.setFont("helvetica", "normal")
+  doc.text(data.personalInfo.email, 105, y, { align: "center" })
+  y += 7
+  doc.text(data.personalInfo.phone, 105, y, { align: "center" })
+  y += 7
+  doc.text(data.personalInfo.location, 105, y, { align: "center" })
+  y += 15
 
-    // Header
-    doc.fillColor("#333333").fontSize(28).font("Helvetica-Bold").text(data.personalInfo.fullName, { align: "center" })
-    doc.moveDown(0.3)
-    doc.fillColor("#555555").fontSize(14).font("Helvetica").text(data.personalInfo.email, { align: "center" })
-    doc.moveDown(0.1)
-    doc.text(data.personalInfo.phone, { align: "center" })
-    doc.moveDown(0.1)
-    doc.text(data.personalInfo.location, { align: "center" })
-    doc.moveDown(1)
+  // Professional Summary
+  y = addSection("Professional Summary", y)
+  doc.setFontSize(12)
+  doc.setFont("helvetica", "normal")
+  const summaryLines = doc.splitTextToSize(data.professionalSummary, 170)
+  doc.text(summaryLines, 20, y)
+  y += summaryLines.length * 7 + 10
 
-    // Horizontal line
-    doc
-      .moveTo(50, doc.y)
-      .lineTo(doc.page.width - 50, doc.y)
-      .stroke("#cccccc")
-    doc.moveDown(1)
-
-    // Professional Summary
-    addSection("Professional Summary")
-    doc.fillColor("#333333").fontSize(12).font("Helvetica").text(data.professionalSummary, { align: "justify" })
-    doc.moveDown(1)
-
-    // Work Experience
-    addSection("Work Experience")
-    data.workExperience.forEach((exp, index) => {
-      addSubSection(exp.position)
-      doc
-        .fillColor("#555555")
-        .fontSize(12)
-        .font("Helvetica-Oblique")
-        .text(`${exp.company} | ${exp.startDate} - ${exp.endDate}`)
-      doc.moveDown(0.3)
-      doc.fillColor("#333333").fontSize(12).font("Helvetica").text(exp.description, { align: "justify" })
-      if (index < data.workExperience.length - 1) doc.moveDown(0.5)
-    })
-    doc.moveDown(1)
-
-    // Education
-    addSection("Education")
-    data.education.forEach((edu, index) => {
-      addSubSection(edu.degree)
-      doc.fillColor("#555555").fontSize(12).font("Helvetica").text(`${edu.institution}, ${edu.year}`)
-      if (index < data.education.length - 1) doc.moveDown(0.5)
-    })
-    doc.moveDown(1)
-
-    // Skills
-    addSection("Skills")
-    const skillsPerRow = 3
-    const skillBoxWidth = (doc.page.width - 100) / skillsPerRow
-    const skillBoxHeight = 30
-    let currentX = 50
-    let currentY = doc.y
-
-    data.skills.forEach((skill, index) => {
-      doc.rect(currentX, currentY, skillBoxWidth - 10, skillBoxHeight).fill("#e6e6e6")
-      doc
-        .fillColor("#333333")
-        .fontSize(12)
-        .font("Helvetica")
-        .text(skill, currentX + 5, currentY + 8, { width: skillBoxWidth - 20, align: "center" })
-
-      currentX += skillBoxWidth
-      if ((index + 1) % skillsPerRow === 0) {
-        currentX = 50
-        currentY += skillBoxHeight + 10
-      }
-    })
-
-    // Footer with page number
-    const pages = doc.bufferedPageRange()
-    for (let i = 0; i < pages.count; i++) {
-      doc.switchToPage(i)
-      doc
-        .fillColor("#999999")
-        .fontSize(10)
-        .font("Helvetica")
-        .text(`Page ${i + 1} of ${pages.count}`, 0.5 * (doc.page.width - 100), doc.page.height - 50, {
-          width: 100,
-          align: "center",
-          lineBreak: false,
-        })
-    }
-
-    doc.end()
+  // Work Experience
+  y = addSection("Work Experience", y)
+  data.workExperience.forEach((exp) => {
+    y = addSubSection(exp.position, y)
+    doc.setFontSize(12)
+    doc.setFont("helvetica", "normal")
+    doc.text(`${exp.company} | ${exp.startDate} - ${exp.endDate}`, 20, y)
+    y += 7
+    const descLines = doc.splitTextToSize(exp.description, 170)
+    doc.text(descLines, 20, y)
+    y += descLines.length * 7 + 10
   })
+
+  // Education
+  y = addSection("Education", y)
+  data.education.forEach((edu) => {
+    y = addSubSection(edu.degree, y)
+    doc.setFontSize(12)
+    doc.setFont("helvetica", "normal")
+    doc.text(`${edu.institution}, ${edu.year}`, 20, y)
+    y += 10
+  })
+
+  // Skills
+  y = addSection("Skills", y)
+  doc.setFontSize(12)
+  doc.setFont("helvetica", "normal")
+  const skillsText = data.skills.join(", ")
+  const skillsLines = doc.splitTextToSize(skillsText, 170)
+  doc.text(skillsLines, 20, y)
+
+  // Convert the PDF to a buffer
+  const pdfBuffer = Buffer.from(doc.output("arraybuffer"))
+  return pdfBuffer
 }
 

@@ -31,6 +31,9 @@ export default function Dashboard() {
     { title: "Experience", completed: "3/13", editLink: "#" },
     { title: "Education", completed: "2/2", editLink: "#" },
   ]
+  const handleVideoCall = () => {
+    window.open("https://framevr.io/classroomcipher", "_blank");
+  };
 
   return (
     <div className="min-h-screen  text-white">
@@ -95,7 +98,7 @@ export default function Dashboard() {
           </div>
 
           {/* Enter VR Classroom Button */}
-          <button className="bg-black text-white flex items-center mt-3 mr-4 pb-1 pr-1 pl-4 pt-1 px-6 py-2 rounded-full">
+          <button onClick={handleVideoCall} className="bg-black text-white flex items-center mt-3 mr-4 pb-1 pr-1 pl-4 pt-1 px-6 py-2 rounded-full">
             Enter VR Classroom 
             <div className="bg-[#57FF31] text-black p-1 pl-1 pr-1 ml-4 rounded-full">
             <ArrowUpRight className="ml-1 m-1" />
