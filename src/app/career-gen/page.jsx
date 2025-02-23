@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { careerQuestions } from "@/lib/questions"
 import { useGroqAI } from "@/hooks/useGroqAI"
 import { ChevronLeft, ChevronRight, RotateCcw, ArrowRight } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 const TOTAL_QUESTIONS = 7
 
@@ -19,7 +20,7 @@ export default function CareerSwipe() {
   const [answers, setAnswers] = useState([])
   const [results, setResults] = useState(null)
   const { analyzeResponses, isLoading, error } = useGroqAI()
-
+  const router =useRouter()
   useEffect(() => {
     // Randomly select 7 questions
     const shuffled = [...careerQuestions].sort(() => 0.5 - Math.random())
@@ -84,6 +85,8 @@ export default function CareerSwipe() {
 
   const handleGetStarted = () => {
     console.log("User clicked Get Started")
+    router.push("/dashboard")
+    
     // Add your logic here for what should happen when the user clicks "Let's Get Started"
   }
 

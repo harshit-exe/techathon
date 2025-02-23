@@ -38,7 +38,7 @@ export default function LoginPage() {
     const response = await login(formData);
     if (response.success) {
       toast.success("Login successful!");
-      router.push("/dashboard");
+      router.push("/career-gen");
     } else {
       toast.error(response.message);
     }
