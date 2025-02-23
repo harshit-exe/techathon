@@ -79,7 +79,7 @@ export default function AICareerPathGenerator() {
 
         {careerPath && (
           <div className="mt-8 grid gap-8 animate-fadeIn text-white ">
-            <Card className="bg-black/50 backdrop-blur-md border border-[#4F46E5] rounded-xl overflow-hidden">
+            <Card className="bg-black/50 backdrop-blur-md border border-white rounded-xl overflow-hidden">
               <Tabs defaultValue="outline" className="w-full">
                 <TabsList className="w-full grid grid-cols-4 bg-black/50 rounded-t-xl">
                   <TabsTrigger

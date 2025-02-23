@@ -60,7 +60,7 @@ export default function CareerDevelopmentHub() {
 
   return (
     <div className="min-h-screen bg-transparent bg-contain text-white p-4">
-      <h1 className="text-4xl font-poppins text-center mb-8 text-white">Career Development Hub</h1>
+      <h1 className="text-4xl font-bold text-center mb-8 text-white">CAREER DEVELOPMENT HUB</h1>
       <div className="max-w-4xl mx-auto">
         <AnimatePresence mode="wait">
           {!quizStarted && <TopicSelector onTopicSubmit={handleTopicSubmit} />}

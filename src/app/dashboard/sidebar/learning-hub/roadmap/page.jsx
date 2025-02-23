@@ -14,7 +14,7 @@ export default function CareerRoadmapPage() {
 
   return (
     <div className="min-h-screen bg-[url('/bg.png')] bg-contain text-white p-8">
-      <h1 className="text-4xl font-bold mb-8 text-center font-poppins">
+      <h1 className="text-4xl font-bold mb-8 text-center">
         CAREER DEVELOPMENT ROADMAP
       </h1>
 
