@@ -164,7 +164,7 @@ export function EnhancedSidebar({ user, onExpandChange, setToggleFunction }) {
       <div className="flex flex-col h-full ">
         <div className="p-4 pl-0 flex items-center justify-between">
           <div className="p-4 flex items-center">
-            <Avatar className="w-10 h-10 border-2 border-[#6366F1]">
+            <Avatar   onClick={toggleSidebar} className="w-10 h-10 border-2 border-[#6366F1]">
               <AvatarImage src={user?.picture} alt={user?.firstName} />
               <AvatarFallback className="bg-[#2563eb] text-white">
                 {user?.firstName?.charAt(0)}
