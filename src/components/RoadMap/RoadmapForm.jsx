@@ -140,13 +140,13 @@ export default function RoadmapForm({ setRoadmapData, onComplete }) {
               <Card
                 key={path.value}
                 className={`cursor-pointer transition-all ${
-                  careerPath === path.value ? "bg-indigo-600 border-green-400" : "bg-gray-800 hover:bg-gray-700"
+                  careerPath === path.value ? "bg-indigo-600 border-green-400" : "bg-black hover:bg-gray-700"
                 }`}
                 onClick={() => setCareerPath(path.value)}
               >
                 <CardContent className="p-4">
-                  <div className="flex items-center text-green-400 gap-3">
-                    <Icon icon={path.icon} className="w-8 h-8 text-green-400" />
+                  <div className="flex items-center text-[#ffffff] gap-3">
+                    <Icon icon={path.icon} className="w-8 h-8 text-[#6366F1]" />
                     <div>
                       <h3 className="font-semibold text-lg">{path.label}</h3>
                       <p className="text-sm text-gray-300">{path.description}</p>
@@ -165,13 +165,13 @@ export default function RoadmapForm({ setRoadmapData, onComplete }) {
               <Card
                 key={level.value}
                 className={`cursor-pointer transition-all ${
-                  skillLevel === level.value ? "bg-indigo-600 border-green-400" : "bg-gray-800 hover:bg-gray-700"
+                  skillLevel === level.value ? "bg-indigo-600 border-green-400" : "bg-black hover:bg-gray-700"
                 }`}
                 onClick={() => setSkillLevel(level.value)}
               >
                 <CardContent className="p-4">
-                  <div className="flex text-green-400 items-center gap-3">
-                    <Icon icon={level.icon} className="w-8 h-8 text-green-400" />
+                  <div className="flex text-white items-center gap-3">
+                    <Icon icon={level.icon} className="w-8 h-8 text-[#6366F1]" />
                     <div>
                       <h3 className="font-semibold text-lg">{level.label}</h3>
                       <p className="text-sm text-gray-300">{level.description}</p>
@@ -204,13 +204,13 @@ export default function RoadmapForm({ setRoadmapData, onComplete }) {
                 className={`cursor-pointer transition-all ${
                   selectedFocusAreas.includes(area.value)
                     ? "bg-indigo-600 border-green-400"
-                    : "bg-gray-800 hover:bg-gray-700"
+                    : "bg-black hover:bg-gray-700"
                 }`}
                 onClick={() => handleFocusAreaToggle(area.value)}
               >
                 <CardContent className="p-4">
-                  <div className="flex text-green-400 items-center gap-3">
-                    <Icon icon={area.icon} className="w-8 h-8 text-green-400" />
+                  <div className="flex text-white items-center gap-3">
+                    <Icon icon={area.icon} className="w-8 h-8 text-[#6366F1]" />
                     <div>
                       <h3 className="font-semibold text-lg">{area.label}</h3>
                       <p className="text-sm text-gray-300">{area.description}</p>

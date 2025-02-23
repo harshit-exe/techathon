@@ -236,7 +236,7 @@ export default function ResumeBuilder() {
           {/* Form Section */}
           <div className="flex-1 space-y-4">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-2xl font-poppins">RESUME BUILDER</h2>
+              <h2 className="text-2xl font-bold">RESUME BUILDER</h2>
               <div className="relative">
                 <input
                   type="file"

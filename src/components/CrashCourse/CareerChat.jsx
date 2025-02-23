@@ -59,7 +59,7 @@ export default function CareerChat({ careerPath, scrapedData }) {
   }
 
   return (
-    <Card className="h-[70vh] flex flex-col bg-black/50 backdrop-blur-md shadow-xl rounded-xl overflow-hidden border border-[#4F46E5]">
+    <Card className="h-[70vh] flex flex-col bg-black/50 backdrop-blur-md shadow-xl rounded-xl overflow-hidden border border-white">
       <CardContent className="flex-grow flex flex-col p-4">
         <ScrollArea className="flex-grow mb-4 pr-4" ref={scrollAreaRef}>
           {messages.map((message, index) => (
@@ -100,12 +100,12 @@ export default function CareerChat({ careerPath, scrapedData }) {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Ask about your career path..."
-            className="flex-grow text-lg rounded-xl border-2 border-[#4F46E5] focus:border-[#57FF31] focus:ring-2 focus:ring-[#57FF31] bg-black text-white"
+            className="flex-grow text-lg rounded-xl border-2 border-white focus:border-[#57FF31] focus:ring-2 focus:ring-[#57FF31] bg-black text-white"
           />
           <Button
             type="submit"
             disabled={isLoading}
-            className="bg-gradient-to-r from-[#4F46E5] to-[#57FF31] hover:from-[#4F46E5] hover:to-[#57FF31] text-black font-bold py-2 px-6 rounded-xl transition duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-[#57FF31] hover:from-[#4F46E5] hover:to-[#57FF31] text-black font-bold py-2 px-6 rounded-xl transition duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isLoading ? <Loader2 className="h-5 w-5 animate-spin" /> : <Send className="h-5 w-5" />}
           </Button>

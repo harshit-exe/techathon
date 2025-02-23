@@ -49,7 +49,7 @@ export default function CareerPathForm({ onSubmit, isLoading, setIsScrapingLoadi
   return (
     <form
       onSubmit={handleSubmit}
-      className="mb-8 bg-black/90 backdrop-blur-md p-8 rounded-xl shadow-xl border border-[#4F46E5]"
+      className="mb-8 bg-black/90 backdrop-blur-md p-8 rounded-xl shadow-xl border border-white"
     >
       <div className="flex flex-col md:flex-row gap-4">
         <Input
@@ -57,12 +57,12 @@ export default function CareerPathForm({ onSubmit, isLoading, setIsScrapingLoadi
           value={input}
           onChange={handleInputChange}
           placeholder="Enter a job title, skill, or career website URL"
-          className="flex-grow py-6 text-lg rounded-xl border-2 border-[#4F46E5] focus:border-[#57FF31] focus:ring-2 focus:ring-[#57FF31] bg-black text-white"
+          className="flex-grow py-6 text-lg rounded-xl border-2 border-white bg-black text-white"
         />
         <Button
           type="submit"
           disabled={isLoading}
-          className="bg-gradient-to-r from-[#4F46E5] to-[#57FF31] hover:from-[#4F46E5] hover:to-[#57FF31] text-black font-bold py-6 px-6 rounded-xl transition duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="bg-[#4F46E5] hover:to-[#57FF31] font-bold py-6 px-6 rounded-xl transition duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isLoading ? (
             <>

@@ -23,7 +23,7 @@ export default function PremiumCourses() {
       title: "Generative AI Series",
       description:
         "An exciting YouTube playlist that takes you through the fascinating world of generative artificial...",
-      videoUrl: "https://www.youtube.com/embed/jGwO_UgTS7I",
+      videoUrl: "https://www.youtube.com/embed/BP-w99ZINTc?si=0aQfSWOOR18ireCG",
       level: "Intermediate",
       rating: 4.5,
       hours: 8,
@@ -73,7 +73,7 @@ export default function PremiumCourses() {
       title: "App development with Android",
       description:
         "An exciting YouTube playlist that takes you through the fascinating world of generative artificial...",
-      videoUrl: "https://www.youtube.com/embed/jGwO_UgTS7I",
+      videoUrl: "https://www.youtube.com/embed/yye7rSsiV6k?si=C95eYEW4W8dfYCuL",
       level: "Intermediate",
       rating: 4.5,
       hours: 8,
@@ -120,12 +120,12 @@ export default function PremiumCourses() {
                   <div className="flex">
                     {[...Array(5)].map((_, i) => (
                       <Star
-                        key={i}
-                        className={`w-4 h-4 ${
-                          i < Math.floor(course.rating)
-                            ? "fill-primary text-primary"
-                            : "fill-muted text-muted-foreground"
-                        }`}
+                      key={i}
+                      className={`w-4 h-4 ${
+                        i < Math.floor(course.rating)
+                          ? "fill-yellow-400 text-yellow-400" // Change to yellow
+                          : "fill-muted text-muted-foreground"
+                      }`}
                       />
                     ))}
                   </div>
@@ -145,11 +145,11 @@ export default function PremiumCourses() {
                 ))}
               </div>
             </div>
-            <Link href={`/courses/${course.id}`} className="mt-4 w-full">
+            {/* <Link href={`/courses/${course.id}`} className="mt-4 w-full">
               <Button className="w-full" variant="secondary">
                 Start Now
               </Button>
-            </Link>
+            </Link> */}
           </div>
         ))}
       </div>

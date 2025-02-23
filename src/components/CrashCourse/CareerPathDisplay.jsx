@@ -8,7 +8,7 @@ export default function CareerPathDisplay({ careerPath }) {
     <ScrollArea className="h-[70vh] pr-4">
       <Accordion type="single" collapsible className="w-full">
         {careerPath.map((stage, index) => (
-          <AccordionItem key={index} value={`item-${index}`} className="border-b border-[#4F46E5]">
+          <AccordionItem key={index} value={`item-${index}`} className="border-b border-white">
             <AccordionTrigger className="text-lg font-semibold hover:bg-[#4F46E5]/20 transition-colors duration-200">
               <div className="flex items-center text-white">
                 <FileText className="mr-2 text-[#57FF31]" />

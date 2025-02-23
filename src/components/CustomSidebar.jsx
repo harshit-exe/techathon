@@ -21,84 +21,79 @@ import { toast } from "react-toastify";
 
 const navigationItems = [
   {
-    name: "Learning Hub",
-    icon: "noto:books",
-    color: "#60a5fa",
-    children: [
+    "name": "Learning Hub",
+    "icon": "mdi:book-open-variant",
+    "color": "#60a5fa",
+    "children": [
       {
-        name: "Virtual Mentor",
-        icon: "noto:graduation-cap",
-        link: "/dashboard/mentor",
+        "name": "Virtual Mentor",
+        "icon": "mdi:school-outline",
+        "link": "/dashboard/mentor"
       },
       {
-        name: "Roadmap Generator",
-        icon: "noto:world-map",
-        link: "/dashboard/sidebar/learning-hub/roadmap",
+        "name": "Roadmap Generator",
+        "icon": "mdi:map-outline",
+        "link": "/dashboard/sidebar/learning-hub/roadmap"
       },
       {
-        name: "AI Mock Test",
-        icon: "noto:robot",
-        link: "/dashboard/sidebar/learning-hub/mocktest",
+        "name": "AI Mock Test",
+        "icon": "mdi:robot-outline",
+        "link": "/dashboard/sidebar/learning-hub/mocktest"
       },
       {
-        name: "Courses",
-        icon: "noto:open-book",
-        link: "/dashboard/sidebar/learning-hub/courses",
-      },
-    ],
+        "name": "Courses",
+        "icon": "mdi:book-multiple-outline",
+        "link": "/dashboard/sidebar/learning-hub/courses"
+      }
+    ]
   },
   {
-    name: "Career Development",
-    icon: "noto:briefcase",
-    color: "#4ade80",
-    children: [
+    "name": "Career Development",
+    "icon": "mdi:briefcase-outline",
+    "color": "#4ade80",
+    "children": [
       {
-        name: "Resume Builder",
-        icon: "noto:page-facing-up",
-        link: "/dashboard/sidebar/career-development/resume",
+        "name": "Resume Builder",
+        "icon": "mdi:file-document-edit-outline",
+        "link": "/dashboard/sidebar/career-development/resume"
       },
       {
-        name: "Mock Interview",
-        icon: "noto:speaking-head",
-        link: "/dashboard/sidebar/career-development/mockinterview",
+        "name": "Mock Interview",
+        "icon": "mdi:account-voice",
+        "link": "/dashboard/sidebar/career-development/mockinterview"
       },
       {
-        name: "Crash Course Generator",
-        icon: "noto:high-voltage",
-        link: "/dashboard/sidebar/career-development/crashcourse",
-      },
-    ],
+        "name": "Crash Course Generator",
+        "icon": "mdi:flash-outline",
+        "link": "/dashboard/sidebar/career-development/crashcourse"
+      }
+    ]
   },
   {
-    name: "VR Simulation",
-    icon: "noto:busts-in-silhouette"  ,
-    color: "#facc15",
-    link: "/dashboard/virtual-room",
-  },
-  // {
-  //   name: "Jobs and Internships",
-  //   icon: "noto:briefcase",
-  //   color: "#fb923c",
-  //   link: "/dashboard/sidebar/event-webinars/Jobs",
-  // },
-  {
-    name: "Events & Webinars",
-    icon: "noto:spiral-calendar",
-    color: "#fb923c",
-    link: "/dashboard/sidebar/event-webinars/events",
+    "name": "VR Simulation",
+    "icon": "mdi:virtual-reality",
+    "color": "#facc15",
+    "link": "/dashboard/virtual-room"
   },
   {
-    name: "Astrotalks",
-    icon: "noto:video-game",
-    color: "#ff6b6b",
-    link: "/dashboard/sidebar/gamification/astrotalks",
+    "name": "Events & Webinars",
+    "icon": "mdi:calendar-multiple-check",
+    "color": "#fb923c",
+    "link": "/dashboard/sidebar/event-webinars/events"
   },
   {
-    name: "Account Settings",
-    icon: "noto:gear",
-    color: "#c084fc",
-    link: "/dashboard/sidebar/account-settings/settings",
+    "name": "Astrotalks",
+    "icon": "mdi:podcast",
+    "color": "#ff6b6b",
+    "link": "/dashboard/sidebar/gamification/astrotalks"
   },
+  {
+    "name": "Account Settings",
+    "icon": "mdi:cog-outline",
+    "color": "#c084fc",
+    "link": "/dashboard/sidebar/account-settings/settings"
+  }
+  
 ];
 
 export function EnhancedSidebar({ user, onExpandChange, setToggleFunction }) {
@@ -160,7 +155,7 @@ export function EnhancedSidebar({ user, onExpandChange, setToggleFunction }) {
   return (
     <motion.div
       className={cn(
-        "fixed left-0 top-0 h-screen bg-[#191919] text-white transition-all duration-100 ease-in-out z-50 border-r border-[#3c3c3c]",
+        "fixed left-0 top-0 h-screen bg-[#000000] text-white transition-all duration-100 ease-in-out z-50 border-r border-[#3c3c3c]",
         isExpanded ? "w-64" : "w-18"
       )}
       animate={{ width: isExpanded ? 256 : 64 }}

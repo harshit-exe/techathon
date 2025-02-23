@@ -56,7 +56,7 @@ const TopicSelector = ({ onTopicSubmit }) => {
             key={topic.id}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="p-4 bg-[#312c82] text-white rounded-lg hover:bg-[#5c56d9] transition-colors text-left flex items-center space-x-3"
+            className="p-4 bg-black border-blue-50 text-white rounded-lg hover:bg-[#5c56d9] transition-colors text-left flex items-center space-x-3"
             onClick={() => onTopicSubmit(topic.name)}
           >
             <topic.icon className="w-6 h-6" />

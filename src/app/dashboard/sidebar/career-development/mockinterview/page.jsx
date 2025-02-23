@@ -269,7 +269,7 @@ export default function CareerGuidanceInterviewSimulator() {
     <div
       className={`min-h-screen min-w-screen bg-black bg-contain text-white p-4 ${isFullScreen ? "fixed inset-0 z-50" : ""}`}
     >
-          <h1 className="text-3xl font-poppins text-[#ffffff] text-center">AI Career Guidance Assistant</h1>
+          <h1 className="text-3xl font-bold text-[#ffffff] text-center">AI CAREER GUIDANCE ASSISTANT</h1>
       <div className="max-w-7xl mx-auto h-full flex flex-col">
         <div className="flex justify-between items-center mb-4">
           {isInterviewStarted && (
@@ -312,9 +312,9 @@ export default function CareerGuidanceInterviewSimulator() {
         )}
 
         {!isInterviewStarted ? (
-          <Card className="max-w-2xl mx-auto bg-gray-800 text-white border-[#34daff] border-2">
+          <Card className="max-w-2xl mx-auto bg-black text-white border-[#6366F1] border-2">
             <CardHeader>
-              <CardTitle className="text-2xl font-semibold text-center text-[#70c6ff]">
+              <CardTitle className="text-3xl font-semibold text-center text-[#6366F1]">
                 Explore Your Career Path
               </CardTitle>
             </CardHeader>

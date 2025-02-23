@@ -13,7 +13,7 @@ export default function ResourceLibrary({ careerPath }) {
   }
 
   return (
-    <Card className="bg-black/50 backdrop-blur-md border border-[#4F46E5] rounded-xl overflow-hidden">
+    <Card className="bg-black/50 backdrop-blur-md border border-white rounded-xl overflow-hidden">
       <CardHeader>
         <CardTitle className="text-2xl font-bold text-white">Resource Library</CardTitle>
       </CardHeader>
