@@ -25,11 +25,11 @@ export const UI = ({ hidden, ...props }) => {
   return (
     <>
       <div className="fixed flex  inset-0 z-10  flex-col justify-between p-4 pointer-events-none">
-        <div className="ml-28 self-start backdrop-blur-md bg-white bg-opacity-50 p-4 rounded-lg">
-          <h1 className="font-black text-2xl flex items-center">
-            <FaCode className="mr-2" /> Virtual Mentor
+        <div className="ml-28 self-start backdrop-blur-md  bg-opacity-50 p-4 rounded-lg">
+          <h1 className="font-black text-2xl flex items-center text-blue-600">
+            <FaCode className="mr-2 " /> Virtual Mentor
           </h1>
-          <p className="text-sm text-gray-600">Your AI companion for learning new career path</p>
+          <p className="text-sm text-gray-300">Your AI companion for learning new career path</p>
         </div>
 
         {tutorResponse && (
@@ -58,7 +58,7 @@ export const UI = ({ hidden, ...props }) => {
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
-              className="bg-white rounded-lg shadow-lg p-4 w-[30%] max-h-[60vh] overflow-y-auto"
+              className=" bg-border border-white rounded-lg shadow-lg p-4 w-[30%] max-h-[60vh] overflow-y-auto"
             >
               {/* {tutorResponse.infographic && (
                 <img
@@ -69,13 +69,13 @@ export const UI = ({ hidden, ...props }) => {
               )} */}
               <button
                 onClick={() => setShowResources(!showResources)}
-                className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-2 rounded-full flex items-center justify-center w-full mb-2 transition-all duration-300 text-sm"
+                className="bg-blue-600 hover:bg-blue-500 text-white py-1 px-2 rounded-full flex items-center justify-center w-full mb-2 transition-all duration-300 text-sm"
               >
                 <FaBook className="mr-1" /> {showResources ? "Hide Resources" : "Show Resources"}
               </button>
               {showResources && tutorResponse.resources && tutorResponse.resources.length > 0 && (
                 <div>
-                  <h3 className=" text-lg font-bold mb-2 flex items-center">
+                  <h3 className=" text-lg font-bold mb-2 flex items-center text-black">
                     <FaLink className="mr-1 text-green-500" /> Additional Resources
                   </h3>
                   <ul className="space-y-1">
@@ -113,7 +113,7 @@ export const UI = ({ hidden, ...props }) => {
             <button
               disabled={loading || message}
               onClick={sendMessage}
-              className={`bg-blue-500 hover:bg-blue-600 text-white p-7 px-4 font-semibold uppercase rounded-full shadow-lg transition-all duration-300 flex items-center text-sm ${
+              className={`bg-blue-500 hover:bg-blue-600 text-white py-4 px-8 font-semibold uppercase rounded-full shadow-lg transition-all duration-300 flex items-center text-sm ${
                 loading || message ? "cursor-not-allowed opacity-30" : ""
               }`}
             >
@@ -122,7 +122,7 @@ export const UI = ({ hidden, ...props }) => {
           </div>
           <button
             onClick={() => setCameraZoomed(!cameraZoomed)}
-            className="ml-5 bg-blue-500 hover:bg-blue-600 text-white p-7 rounded-full shadow-lg transition-all duration-300"
+            className="ml-5 bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-full shadow-lg transition-all duration-300"
           >
             {cameraZoomed ? (
               <svg

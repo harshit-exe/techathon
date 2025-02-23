@@ -269,7 +269,7 @@ export default function CareerGuidanceInterviewSimulator() {
     <div
       className={`min-h-screen min-w-screen bg-black bg-contain text-white p-4 ${isFullScreen ? "fixed inset-0 z-50" : ""}`}
     >
-          <h1 className="text-3xl font-bold text-[#ffffff] text-center">AI CAREER GUIDANCE ASSISTANT</h1>
+          <h1 className="text-3xl font-bold text-[#ffffff] text-center">CAREER GUIDANCE ASSISTANT</h1>
       <div className="max-w-7xl mx-auto h-full flex flex-col">
         <div className="flex justify-between items-center mb-4">
           {isInterviewStarted && (

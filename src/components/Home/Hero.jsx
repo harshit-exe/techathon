@@ -124,7 +124,7 @@ export default function Home() {
                   Get Started
                 </p>
                 <div className="w-[120px] h-[120px] rounded-full flex items-center justify-center bg-[#57FF31]">
-                  <button>
+                  <button onClick={()=>navigate.push('/login')}>
                     <MoveUpRight size={60} color="black" />
                   </button>
                 </div>

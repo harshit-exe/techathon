@@ -229,7 +229,7 @@ export default function ResumeBuilder() {
   }
 
   return (
-    <div className="min-h-screen bg-[#111111] text-white">
+    <div className="min-h-screen bg-transparent text-white">
       {/* Header */}
       <main className="p-6 max-w-7xl mx-auto">
         <div className="flex gap-8">
