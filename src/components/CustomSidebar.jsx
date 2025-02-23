@@ -63,11 +63,6 @@ const navigationItems = [
         link: "/dashboard/sidebar/career-development/mockinterview",
       },
       {
-        name: "Code Editor",
-        icon: "noto:laptop",
-        link: "/dashboard/sidebar/career-development/editor",
-      },
-      {
         name: "Crash Course Generator",
         icon: "noto:high-voltage",
         link: "/dashboard/sidebar/career-development/crashcourse",
@@ -75,33 +70,17 @@ const navigationItems = [
     ],
   },
   {
-    name: "Community Space",
-    icon: "noto:busts-in-silhouette",
+    name: "VR Simulation",
+    icon: "noto:busts-in-silhouette"  ,
     color: "#facc15",
-    children: [
-      {
-        name: "Discussion",
-        icon: "noto:speech-balloon",
-        link: "/dashboard/sidebar/community-space/discussion",
-      },
-      {
-        name: "Mentoring",
-        icon: "noto:handshake",
-        link: "/dashboard/sidebar/community-space/mentor",
-      },
-      {
-        name: "ChatBot",
-        icon: "noto:robot",
-        link: "/dashboard/sidebar/community-space/chatbot",
-      },
-    ],
+    link: "/dashboard/virtual-room",
   },
-  {
-    name: "Jobs and Internships",
-    icon: "noto:spiral-calendar",
-    color: "#fb923c",
-    link: "/dashboard/sidebar/event-webinars/Jobs",
-  },
+  // {
+  //   name: "Jobs and Internships",
+  //   icon: "noto:briefcase",
+  //   color: "#fb923c",
+  //   link: "/dashboard/sidebar/event-webinars/Jobs",
+  // },
   {
     name: "Events & Webinars",
     icon: "noto:spiral-calendar",

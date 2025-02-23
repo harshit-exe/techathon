@@ -51,10 +51,10 @@ export default function AICareerPathGenerator() {
   }, [careerPath])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black to-gray-900 text-white">
+    <div className="min-h-screen bg-transparent text-white">
       <div className="container mx-auto p-8">
-        <h1 className="text-6xl font-extrabold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-[#4F46E5] to-[#57FF31] animate-pulse">
-          AI Career Path Generator
+        <h1 className="text-6xl font-extrabold mb-8 text-center  ">
+         <span className="text-[#57FF31]">C</span>areer Path Generator
         </h1>
 
         {!isPresent && <BentoGrid />}
@@ -78,7 +78,7 @@ export default function AICareerPathGenerator() {
         )}
 
         {careerPath && (
-          <div className="mt-8 grid gap-8 animate-fadeIn">
+          <div className="mt-8 grid gap-8 animate-fadeIn text-white ">
             <Card className="bg-black/50 backdrop-blur-md border border-[#4F46E5] rounded-xl overflow-hidden">
               <Tabs defaultValue="outline" className="w-full">
                 <TabsList className="w-full grid grid-cols-4 bg-black/50 rounded-t-xl">
@@ -89,7 +89,7 @@ export default function AICareerPathGenerator() {
                     <Briefcase className="w-5 h-5 mr-2" />
                     Career Path
                   </TabsTrigger>
-                  <TabsTrigger
+                  {/* <TabsTrigger
                     value="skills"
                     className="text-lg font-semibold data-[state=active]:bg-[#4F46E5] data-[state=active]:text-white"
                   >
@@ -102,7 +102,7 @@ export default function AICareerPathGenerator() {
                   >
                     <TrendingUp className="w-5 h-5 mr-2" />
                     Career Timeline
-                  </TabsTrigger>
+                  </TabsTrigger> */}
                   <TabsTrigger
                     value="chat"
                     className="text-lg font-semibold data-[state=active]:bg-[#4F46E5] data-[state=active]:text-white"

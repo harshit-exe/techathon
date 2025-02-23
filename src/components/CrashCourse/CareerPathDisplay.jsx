@@ -10,13 +10,13 @@ export default function CareerPathDisplay({ careerPath }) {
         {careerPath.map((stage, index) => (
           <AccordionItem key={index} value={`item-${index}`} className="border-b border-[#4F46E5]">
             <AccordionTrigger className="text-lg font-semibold hover:bg-[#4F46E5]/20 transition-colors duration-200">
-              <div className="flex items-center">
+              <div className="flex items-center text-white">
                 <FileText className="mr-2 text-[#57FF31]" />
                 Stage {index + 1}: {stage.title}
               </div>
             </AccordionTrigger>
             <AccordionContent>
-              <p className="mb-4 text-gray-300">{stage.description}</p>
+              <p className="mb-4 text-gray-300 text-base font-semibold">{stage.description}</p>
               <StageSection title="Key Skills" icon={Link} items={stage.skills} />
               <StageSection title="Recommended Actions" icon={Code} items={stage.actions} />
               <StageSection title="Milestones" icon={BookOpen} items={stage.milestones} />
@@ -32,13 +32,13 @@ export default function CareerPathDisplay({ careerPath }) {
 function StageSection({ title, icon: Icon, items }) {
   return (
     <>
-      <h3 className="font-semibold mb-2 flex items-center text-[#57FF31]">
+      <h3 className="font-semibold mb-2 flex items-center text-[#57FF31] text-base">
         <Icon className="mr-2" />
         {title}:
       </h3>
       <ul className="list-disc pl-6 mb-4">
         {items.map((item, index) => (
-          <li key={index} className="text-gray-300">
+          <li key={index} className="text-gray-300 text-base font-semibold">
             <Badge variant="secondary" className="mr-2 bg-[#4F46E5] text-white">
               {index + 1}
             </Badge>
@@ -53,18 +53,18 @@ function StageSection({ title, icon: Icon, items }) {
 function ResourcesSection({ resources }) {
   return (
     <>
-      <h3 className="font-semibold mb-2 flex items-center text-[#57FF31]">
+      <h3 className="font-semibold mb-2 flex items-center text-[#57FF31] text-base ">
         <ExternalLink className="mr-2" />
         Resources:
       </h3>
       <ul className="list-none pl-0">
         {resources.map((resource, index) => (
-          <li key={index} className="mb-2">
+          <li key={index} className="mb-2 text-base font-semibold">
             <a
               href={resource.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#4F46E5] hover:text-[#57FF31] hover:underline flex items-center"
+              className="text-[#4F46E5] hover:text-[#57FF31] hover:underline flex items-center text-base font-semibold"
             >
               {resource.url.includes("youtube.com") ? (
                 <Youtube className="mr-2 text-red-500" />
