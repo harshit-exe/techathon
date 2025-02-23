@@ -269,12 +269,12 @@ export default function CareerGuidanceInterviewSimulator() {
     <div
       className={`min-h-screen min-w-screen bg-transparent bg-contain text-white p-4 ${isFullScreen ? "fixed inset-0 z-50" : ""}`}
     >
-          <h1 className="text-3xl font-bold text-[#6366F1] text-center">AI Career Guidance Assistant</h1>
+          <h1 className="text-3xl font-poppins text-[#ffffff] text-center">AI Career Guidance Assistant</h1>
       <div className="max-w-7xl mx-auto h-full flex flex-col">
         <div className="flex justify-between items-center mb-4">
           {isInterviewStarted && (
             <div className="flex items-center space-x-4">
-              {showTimer && <div className="text-xl font-bold text-[#57FF31]">Time: {formatTime(timeRemaining)}</div>}
+              {showTimer && <div className="text-xl font-bold text-[#f72b2b]">Time: {formatTime(timeRemaining)}</div>}
               <Button variant="outline" onClick={toggleFullScreen} className="bg-gray-800 hover:bg-gray-700">
                 {isFullScreen ? <Minimize className="h-4 w-4" /> : <Maximize className="h-4 w-4" />}
               </Button>
@@ -312,9 +312,9 @@ export default function CareerGuidanceInterviewSimulator() {
         )}
 
         {!isInterviewStarted ? (
-          <Card className="max-w-2xl mx-auto bg-gray-800 text-white border-[#6366F1] border-2">
+          <Card className="max-w-2xl mx-auto bg-gray-800 text-white border-[#34daff] border-2">
             <CardHeader>
-              <CardTitle className="text-2xl font-semibold text-center text-[#6366F1]">
+              <CardTitle className="text-2xl font-semibold text-center text-[#70c6ff]">
                 Explore Your Career Path
               </CardTitle>
             </CardHeader>
@@ -343,7 +343,7 @@ export default function CareerGuidanceInterviewSimulator() {
                     onChange={(e) => setNewCareerPath(e.target.value)}
                     className="bg-gray-700 text-white border-[#6366F1]"
                   />
-                  <Button onClick={addNewCareerPath} className="bg-[#6366F1] hover:bg-[#4F46E5] text-white">
+                  <Button onClick={addNewCareerPath} className="bg-[#2f2f62] hover:bg-[#4F46E5] text-white">
                     Add
                   </Button>
                 </div>
@@ -370,7 +370,7 @@ export default function CareerGuidanceInterviewSimulator() {
                     step={5}
                     value={[interviewDuration]}
                     onValueChange={(value) => setInterviewDuration(value[0])}
-                    className="bg-gray-700"
+                    className="bg-white "
                   />
                 </div>
                 <div className="flex items-center space-x-2">
