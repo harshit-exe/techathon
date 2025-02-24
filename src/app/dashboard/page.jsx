@@ -32,7 +32,7 @@ export default function Dashboard() {
     { title: "Education", completed: "2/2", editLink: "#" },
   ]
   const handleVideoCall = () => {
-    window.open("https://framevr.io/classroomcipher", "_blank");
+    window.open("h", "_blank");
   };
 
   return (

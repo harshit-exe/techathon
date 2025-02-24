@@ -38,7 +38,7 @@ import { useAuth } from "@/hooks/useAuth";
   }, [fetchNotifications]);
 
   const handleVideoCall = () => {
-    window.open("https://framevr.io/classroomcipher", "_blank");
+    window.open("h", "_blank");
   };
 
   return (
@@ -85,7 +85,7 @@ import { useAuth } from "@/hooks/useAuth";
       </h1>
     </Link>
           <div className="flex items-center gap-4">
-            <Link href='https://framevr.io/classroomcipher' target="_blank" className="flex items-center gap-2 bg-gray-800 text-white px-7 py-1 pr-1 rounded-full">
+            <Link href='h' target="_blank" className="flex items-center gap-2 bg-gray-800 text-white px-7 py-1 pr-1 rounded-full">
               Enter VR Classroom
               <div className="bg-[#57FF31] text-black p-3 pt-3 pb-3 pl-1f rounded-full text-3xl font-bold">
                 <ArrowUpRight className="ml-1 m-1" />
